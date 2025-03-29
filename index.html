@@ -3,10 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>chipie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000; /* 背景色を黒に設定 */
+            margin: 0;
+        }
+        /* ヘッダー部分 */
+	.service-section {
+    	position: relative;
+    	background-image: url("images/01.jpg");
+    	background-size: cover;
+    	background-position: center;
+    	background-attachment: fixed;
+    	color: #FFFFFF;
+	}
+
+        /* 黒の透過オーバーレイ */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            z-index: 0;
+        }
+        /* 画像部分 */
+        header .header-image {
+            position: absolute;
+            top: 50%; /* 垂直方向に中央配置 */
+            left: 50%;
+            transform: translate(-50%, -50%); /* 水平・垂直両方向に中央配置 */
+            z-index: 1;
+            width: 60%; /* 横幅を画面いっぱいに広げる */
+            height: 60%; /* 高さを画面いっぱいに広げる */
+            object-fit: cover; /* 画像がアスペクト比を維持したまま画面にフィット */
+        }
+        header .header-image img {
+            width: 100%;
+            height: 100%; /* 画像の高さを100%に設定して、親要素にフィットさせる */
+            object-fit: contain;
+        }
+
+        /* ナビゲーション */
+        .header-content {
+            position: absolute;
+            bottom: 0; /* ヘッダーの一番下に配置 */
+            left: 0;
+            right: 0;
+            padding: 20px;
+            z-index: 1;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .header-content .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .header-content nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #FF3399;
+            font-size: 24px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            display: flex;
+            padding: 40px;
+            background-color: #fff0f5; /* ここを白に設定 */
+            margin-top: 200px;
+            margin-left: 200px; /* 右側のスペースを200pxに変更 */
+            margin-right: 200px; /* 右側のスペースを200pxに変更 */
+            margin-bottom: 50px; /* 50ピクセルの間隔に変更 */
+        }
+        .main-content .photo {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-left: 30px; /* 左側のスペースを200pxに変更 */
+            margin-bottom: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
+            position: relative;
+        }
+        .main-content .photo img {
+            width: 100%;
+        }
+        .main-content .greeting {
+            flex: 2;
+            font-size: 18px;
+            color: #333;
+            text-align: left; /* 文字列を左揃えに変更 */
+            margin-top: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
+            margin-left: 100px; /* 文字列と写真の間に100pxのスペースを追加 */
+            position: relative;
+        }
+
+        /* 代表挨拶のタイトル */
+        .greeting-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F9A7D3;
+            text-align: left;
+            margin-bottom: 20px;
+            padding-top: 20px; /* タイトルの上に少しスペースを追加 */
+        }
+
+        /* 代表者の写真とテキスト部分の背景色を設定 */
+        .photo-background {
+            position: absolute;
+            top: 50px; /* 上から50px */
+            left: calc(100% - 100px); /* 右から100px空けた位置 */
+            right: 50px; /* 右端から50pxのスペース */
+            bottom: 50px; /* 下から50px */
+            background-color: rgba(255, 255, 0, 0.5); /* 透過した黄色 */
+            z-index: -1; /* 背景として配置 */
+            border-radius: 10px; /* 角を丸める */
+        }
+
+        /* サービスセクション */
+        .service-section {
+            position: relative;
+            background-image: url("images/01.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 300px; /* 100pxの空白を追加 */
+            padding: 0; /* 左右の余白を削除 */
+            box-sizing: border-box; /* パディングを要素のサイズに含める */
+        }
+
+        /* サービスの修正 */
+        .service {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* 中央揃え */
+            background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
+            padding: 20px;
+            height: 600px;
+            position: relative;
+            z-index: 1;
+            width: 100%; /* 横幅をウインドウ最大に合わせる */
+            margin-left: 0; /* 左側の余白をなくす */
+            margin-bottom: 800px; /* 各サービス間に500pxの間隔を追加 */
+            box-sizing: border-box; /* パディングを要素のサイズに含める */
+        }
+        .service-text {
+            flex: 1;
+            padding: 20px;
+            font-size: 18px;
+        }
+        .service-img {
+            flex: 1;
+            text-align: left; /* 写真の位置が左に来るように変更 */
+        }
+        .service-img img {
+            width: auto;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #000000; /* 背景色を黒に設定 */
+            color: #F9A7D3;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
+        }
+
+        /* スクロール時の背景画像切り替え */
+        .service-section {
+            background-attachment: fixed;
+        }
+
+        .service-section-1 {
+            background-image: url("images/01.jpg");
+        }
+
+        .service-section-2 {
+            background-image: url("images/01.jpg");
+        }
+
+        .service-section-3 {
+            background-image: url("images/01.jpg");
+        }
+    </style>
 </head>
 <body>
-    <h1>ようこそ！</h1>
-    <p>このページは GitHub Pages で公開されています。</p>
+    <header>
+        <div class="header-image">
+            <img src="images/01.jpg" alt="代表者の画像">
+        </div>
+    </header>
+    <div class="header-content">
+        <div class="logo"></div>
+        <nav>
+            <a href="#">ホーム</a>
+            <a href="#">サービス</a>
+            <a href="#">お問い合わせ</a>
+        </nav>
+    </div>
+    <div class="main-content">
+        <div class="photo">
+            <img src="images/01.jpg" alt="代表者の画像">
+            <div class="photo-background"></div> <!-- 背景色を追加 -->
+        </div>
+        <div class="greeting">
+            <div class="greeting-title">代表挨拶</div>
+            <p>私たちchipieは配信者が自分らしく活動し、配信者とファンをつなぐためのサポートを行う配信事務所です。<br>
+		また、新人配信者の発掘。育成にも力を入れ未経験者でも安心してスタートできるようトレーニングやアドバイスを提供します。<br><br>
+		「見た目に自信が無い」・「話すことが不得意」・「自由な時間が少ない」<br><br>
+		そんなあなたが感じる欠点と思える部分こそ個性となり、あなたを輝かせる材料となります。<br>
+		そして配信で得た経験や自信が貴方の人生を豊かにすることを願い私達chipieはひとりひとりに寄り添いあなたと同じ目線でサポートをしてまいります。<br><br>
+		あなたの可能性を広げ、あなたらしく輝ける場所を築くためのお手伝いを私達chipieにさせて頂けませんか？<br>chipie でその一歩を踏み出しましょう。
+		私達が全力でサポートします！<br><br>
+		配信事務所chipie 代表 みみしゃん</p>
+        </div>
+    </div>
+
+    <div class="service-section service-section-1">
+        <div class="service">
+            <div class="service-text">
+                <h2>配信ノウハウ提供</h2><br>
+                <p>– 代表の実績に基づいた成功への近道<br>当社代表はライブ配信で「ランカー」として活動してきました。<br>
+		その代表の培った実績に基づき、配信者向けの実践的なノウハウやアドバイスを提供します。<br>
+		収益化の方法や視聴者獲得術など、実際に成功したテクニックを基にしたアドバイスを行い、配信者が効率よく成長できるようサポートします。<br><br>
+		代表の実績に基づくノウハウで、早期の成果を実現します。
+		</p>
+            </div>
+            <div class="service-img">
+                <img src="images/01.jpg" alt="代表者の画像">
+            </div>
+        </div>
+    </div>
+
+    <div class="service-section service-section-2">
+        <div class="service">
+            <div class="service-text">
+                <h2>ONECARAT契約店</h2>
+                <p>– 公式パートナーとしての信頼性<br><br>
+		当社はワンカラットの公式代理店として、配信者に特別なサポートを提供しています。<br>
+		ワンカラット契約店ならではの企業案件紹介やコラボ機会を活用でき、信頼性の高い環境で活動できます。<br>
+		公式パートナーとしての信頼とサポートを活かし、安定した収益と成長を支援します。</p>
+            </div>
+            <div class="service-img">
+                <img src="images/01.jpg" alt="代表者の画像">
+            </div>
+        </div>
+    </div>
+
+    <div class="service-section service-section-3">
+        <div class="service">
+            <div class="service-text">
+                <h2>伴走パートナーとして</h2>
+                <p>– 配信者の成長をサポート<br><br>
+		当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
+		定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成功できるよう支援します。<br>
+		成功するまで寄り添い、活動をサポートし、安定した成長を実現します。</p>
+            </div>
+            <div class="service-img">
+                <img src="images/01.jpg" alt="代表者の画像">
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 chipie. All rights reserved.</p>
+    </footer>
 </body>
 </html>
