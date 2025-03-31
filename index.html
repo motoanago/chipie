@@ -125,19 +125,15 @@
         }
 
         /* サービスセクション */
-        .service-section {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #FFFFFF;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-top: 200px;
-            padding: 0;
-            box-sizing: border-box;
-        }
+.service-section {
+    background-size: cover; /* 画像を全体にカバー */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 400px; /* PCではある程度の高さを確保 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
         .service {
             display: flex;
@@ -192,7 +188,10 @@
             .service {
                 padding: 10px;
             }
-
+    .service-section {
+        height: auto; /* 高さをコンテンツに応じて自動調整 */
+        padding: 50px 10px; /* 余白を調整 */
+    }
             footer {
                 padding: 10px;
             }
