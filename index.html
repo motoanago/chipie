@@ -53,6 +53,42 @@
             margin-bottom: 50px;
         }
 
+    @media (max-width: 767px) {
+        .header-content {
+            padding: 10px; /* スマホ向けにパディングを小さく */
+        }
+    
+        .logo {
+            font-size: 20px; /* ロゴのフォントサイズを小さく */
+        }
+
+        .header-content nav a {
+            font-size: 18px; /* ナビゲーションリンクのフォントサイズを小さく */
+            margin-left: 10px; /* 左マージンを小さく */
+        }
+    }
+
+    /* タブレット向けのメディアクエリ */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .header-content {
+            padding: 15px; /* タブレット用にパディングを調整 */
+        }
+
+        .logo {
+            font-size: 24px; /* ロゴのフォントサイズを調整 */
+        }
+
+        .header-content nav a {
+            font-size: 20px; /* ナビゲーションリンクのフォントサイズを調整 */
+            margin-left: 15px; /* 左マージンを調整 */
+        }
+    }
+
+
+
+
+        
+        
         .main-content .photo {
             flex: 1;
             border-radius: 10px;
