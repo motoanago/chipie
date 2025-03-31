@@ -10,27 +10,27 @@
             background-color: #000000; /* 背景色を黒に設定 */
             margin: 0;
         }
-        /* ヘッダー部分 */
-	.service-section {
-    	position: relative;
-    	background-image: url("images/onecarft.jpg"); /* ヘッダー部背景 */
-    	background-size: cover;
-    	background-position: center;
-	background-attachment: fixed;
-    	color: #FFFFFF;
+	/* ヘッダー部分 */
+	header {
+	    position: relative;
+	    background-image: url("images/onecarft.jpg"); /* ヘッダー部背景 */
+	    background-size: cover;
+	    background-position: center;
+	    background-attachment: fixed;
+	    color: #FFFFFF;
 	}
 
-        /* 黒の透過オーバーレイ */
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
+	/* 黒の透過オーバーレイ */
+	header::before {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0, 0, 0, 0.5); /* 透過黒オーバーレイを強化 */
+	    z-index: 0;
+	}
         /* 画像部分 */
         header .header-image {
             position: absolute;
