@@ -19,12 +19,12 @@
 
         /* ナビゲーション */
         .header-content {
-            position: fixed;
+            position: absolute;
             top: 0; /* ヘッダーの一番下に配置 */
             left: 0;
             right: 0;
             padding: 20px;
-            z-index: 9999; /* 最前面にする */
+            z-index: 1;
             text-align: center;
             background: rgba(0, 0, 0, 0.8);
         }
@@ -84,11 +84,7 @@
         }
     }
 
-    .service-section {
-        background-attachment: scroll; /* 固定を解除 */
-        background-size: cover; /* 画面全体を覆う */
-        background-position: center center; /* 画像の位置を中央に */
-    }
+
 
 
         
@@ -160,14 +156,13 @@
     .service-img img {
         width: 100%; /* 親要素に合わせて画像を100%に設定 */
         height: auto; /* 高さは自動調整 */
-        object-fit: fixed; /* アスペクト比を維持して表示 */
+        object-fit: cover; /* アスペクト比を維持して表示 */
         }
 
         .service-text {
             flex: 2;
             padding: 20px;
             font-size: 18px;
-            color: #ffffff; /* 文字色を白に設定 */
         }
 
         /* フッター */
