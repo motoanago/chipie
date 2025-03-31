@@ -116,15 +116,15 @@
             margin-bottom: 800px;
         }
 
-        .service-img {
-            flex: 2;
-            text-align: left;
+    .service-img {
+        flex: 0 0 30vw; /* 幅を画面の30%に固定 */
+        text-align: left;
         }
 
-        .service-img img {
-            width: 80%;
-            height: auto;
-            object-fit: cover;
+    .service-img img {
+        width: 100%; /* 親要素に合わせて画像を100%に設定 */
+        height: auto; /* 高さは自動調整 */
+        object-fit: cover; /* アスペクト比を維持して表示 */
         }
 
         .service-text {
