@@ -162,18 +162,34 @@
         .service-section-3 {
             background-image: url("images/03.jpg"); /* サービス03下部 */
         }
-	/* スマホ向け */
-	@media (max-width: 600px) {
-	  body {
-	    font-size: 16px;
-	  }
-	  .container {
-	    padding: 10px;
-	  }
-	  .header {
-	    font-size: 20px;
-	  }
+	    
+	/* スマホ表示向けのスタイル */
+	@media (max-width: 767px) {
+	    /* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
+	    header {
+ 	       padding: 10px;
+	    }
+
+ 	   .main-content {
+ 	       padding: 10px;
+  	      font-size: 14px; /* フォントサイズ調整 */
+  	  }
+
+ 	   .service {
+ 	       padding: 10px;
+	    }
+
+	    .footer {
+	        padding: 10px;
+	    }
+
+	    /* その他、幅が収まるように調整 */
+	    img {
+	        max-width: 100%; /* 画像が親要素に合わせて縮小される */
+	        height: auto;
+	    }
 	}
+
 
 	/* タブレット向け */
 	@media (min-width: 601px) and (max-width: 1024px) {
