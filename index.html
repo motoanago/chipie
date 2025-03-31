@@ -10,11 +10,13 @@
             background-color: #000000; /* 背景色を黒に設定 */
             margin: 0;
         }
+
         header .header-image img {
             width: 100%;
             height: 100%; /* 画像の高さを100%に設定して、親要素にフィットさせる */
-            object-fit: contain;
+            object-fit: cover;
         }
+
         /* ナビゲーション */
         .header-content {
             position: absolute;
@@ -26,11 +28,13 @@
             text-align: center;
             background: rgba(0, 0, 0, 0.8);
         }
+
         .header-content .logo {
             font-size: 28px;
             font-weight: bold;
             margin-bottom: 10px;
         }
+
         .header-content nav a {
             margin-left: 20px;
             text-decoration: none;
@@ -42,31 +46,34 @@
         .main-content {
             display: flex;
             padding: 40px;
-            background-color: #fff0f5; /* ここを白に設定 */
+            background-color: #fff0f5; /* 背景色を変更 */
             margin-top: 200px;
-            margin-left: 200px; /* 右側のスペースを200pxに変更 */
-            margin-right: 200px; /* 右側のスペースを200pxに変更 */
-            margin-bottom: 50px; /* 50ピクセルの間隔に変更 */
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-bottom: 50px;
         }
+
         .main-content .photo {
             flex: 1;
             border-radius: 10px;
             overflow: hidden;
-            margin-left: 30px; /* 左側のスペースを200pxに変更 */
-            margin-bottom: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
+            margin-left: 30px;
             position: relative;
         }
+
         .main-content .photo img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+
         .main-content .greeting {
             flex: 2;
             font-size: 18px;
             color: #333;
-            text-align: left; /* 文字列を左揃えに変更 */
-            margin-top: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
-            margin-left: 100px; /* 文字列と写真の間に100pxのスペースを追加 */
-            position: relative;
+            text-align: left;
+            margin-top: 100px;
+            margin-left: 100px;
         }
 
         /* 代表挨拶のタイトル */
@@ -76,25 +83,11 @@
             color: #F9A7D3;
             text-align: left;
             margin-bottom: 20px;
-            padding-top: 20px; /* タイトルの上に少しスペースを追加 */
-        }
-
-        /* 代表者の写真とテキスト部分の背景色を設定 */
-        .photo-background {
-            position: absolute;
-            top: 50px; /* 上から50px */
-            left: calc(100% - 100px); /* 右から100px空けた位置 */
-            right: 50px; /* 右端から50pxのスペース */
-            bottom: 50px; /* 下から50px */
-            background-color: rgba(255, 255, 0, 0.5); /* 透過した黄色 */
-            z-index: -1; /* 背景として配置 */
-            border-radius: 10px; /* 角を丸める */
         }
 
         /* サービスセクション */
         .service-section {
             position: relative;
-            background-image: url("images/01.jpg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -102,127 +95,103 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
-            margin-top: 200px; /* 100pxの空白を追加 */
-            padding: 0; /* 左右の余白を削除 */
-            box-sizing: border-box; /* パディングを要素のサイズに含める */
+            margin-top: 200px;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-	/* サービスの修正 */
-	.service {
-	    display: flex;
- 	   align-items: center;
-	    justify-content: center; /* 中央揃え */
-	    background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
-	    padding: 20px;
-	    height: 600px;
-	    position: relative;
-	    z-index: 1;
-	    width: 100%; /* 横幅をウインドウ最大に合わせる */
-	    margin-left: 0; /* 左側の余白をなくす */
-	    margin-bottom: 600px; /* 各サービス間に600pxの間隔を追加 */
- 	   box-sizing: border-box; /* パディングを要素のサイズに含める */
-	}
+        .service {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5); /* 透過黒を背景に */
+            padding: 20px;
+            height: 600px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            margin-bottom: 600px;
+        }
 
-	.service-img {
- 	   flex: 2; /* 画像部分の幅を2/6（1:2）に設定 */
- 	   text-align: left; /* 写真の位置が左に来るように変更 */
-	}
+        .service-img {
+            flex: 2;
+            text-align: left;
+        }
 
-	.service-img img {
-	    width: 100%; /* 画像の幅をコンテナに合わせる */
-	    height: 100%; /* 画像の高さをコンテナに合わせる */
-	    object-fit: cover; /* 画像の切り抜きを防止 */
-	}
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-	.service-divider {
-	    flex: 1; /* セクションの間に1の幅を設定 */
-	}
-
-	.service-text {
-	    flex: 2; /* 文字列部分の幅を2/6（1:2）に設定 */
-	    padding: 20px;
-	    font-size: 18px;
-	}
+        .service-text {
+            flex: 2;
+            padding: 20px;
+            font-size: 18px;
+        }
 
         /* フッター */
         footer {
-            background-color: #000000; /* 背景色を黒に設定 */
+            background-color: #000000;
             color: #F9A7D3;
             padding: 20px;
             text-align: center;
-            margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
+            margin-top: 40px;
         }
 
-        /* スクロール時の背景画像切り替え */
-        .service-section {
-            background-attachment: fixed;
+        /* レスポンシブデザイン */
+        @media (max-width: 767px) {
+            header {
+                padding: 10px;
+            }
+
+            .main-content {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .service {
+                padding: 10px;
+            }
+
+            footer {
+                padding: 10px;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
         }
 
-        .service-section-1 {
-            background-image: url("images/01.jpg"); /* サービス01下部 */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            body {
+                font-size: 18px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header {
+                font-size: 24px;
+            }
         }
 
-        .service-section-2 {
-            background-image: url("images/02.jpg"); /* サービス02下部 */
+        @media (min-width: 1025px) {
+            body {
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 30px;
+            }
+
+            .header {
+                font-size: 28px;
+            }
         }
 
-        .service-section-3 {
-            background-image: url("images/03.jpg"); /* サービス03下部 */
-        }
-	    
-	/* スマホ表示向けのスタイル */
-	@media (max-width: 767px) {
-	    /* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
-	    header {
- 	       padding: 10px;
-	    }
-
- 	   .main-content {
- 	       padding: 10px;
-  	      font-size: 14px; /* フォントサイズ調整 */
-  	  }
-
- 	   .service {
- 	       padding: 10px;
-	    }
-
-	    .footer {
-	        padding: 10px;
-	    }
-
-	    /* その他、幅が収まるように調整 */
-	    img {
-	        max-width: 100%; /* 画像が親要素に合わせて縮小される */
-	        height: auto;
-	    }
-	}
-
-
-	/* タブレット向け */
-	@media (min-width: 601px) and (max-width: 1024px) {
-	  body {
-	    font-size: 18px;
-	  }
-	  .container {
-	    padding: 20px;
-	  }
-	  .header {
-	    font-size: 24px;
-	  }
-	}
-
-	/* デスクトップ向け */
-	@media (min-width: 1025px) {
-	  body {
-	    font-size: 20px;
-	  }
-	  .container {
-	    padding: 30px;
-	  }
-	  .header {
-	    font-size: 28px;
-	  }
-	}	    
     </style>
 </head>
 <body>
@@ -231,79 +200,79 @@
             <img src="images/kirakira.jpg" alt="背景画像" class="background-image">
         </div>
     </header>
+
     <div class="header-content">
-        <div class="logo"></div>
+        <div class="logo">chipie</div>
         <nav>
             <a href="#">ホーム</a>
             <a href="#">サービス</a>
             <a href="#">お問い合わせ</a>
         </nav>
     </div>
+
     <div class="main-content">
         <div class="photo">
             <img src="images/mimi.JPG" alt="代表者の画像">
-            <div class="photo-background"></div> <!-- 背景色を追加 -->
         </div>
         <div class="greeting">
             <div class="greeting-title">代表挨拶</div>
             <p>私たちchipieは配信者が自分らしく活動し、配信者とファンをつなぐためのサポートを行う配信事務所です。<br>
-		また、新人配信者の発掘。育成にも力を入れ未経験者でも安心してスタートできるようトレーニングやアドバイスを提供します。<br><br>
-		「見た目に自信が無い」・「話すことが不得意」・「自由な時間が少ない」<br><br>
-		そんなあなたが感じる欠点と思える部分こそ個性となり、あなたを輝かせる材料となります。<br>
-		そして配信で得た経験や自信が貴方の人生を豊かにすることを願い私達chipieはひとりひとりに寄り添いあなたと同じ目線でサポートをしてまいります。<br><br>
-		あなたの可能性を広げ、あなたらしく輝ける場所を築くためのお手伝いを私達chipieにさせて頂けませんか？<br>chipie でその一歩を踏み出しましょう。
-		私達が全力でサポートします！<br><br>
-		配信事務所chipie 代表 みみしゃん</p>
+                また、新人配信者の発掘。育成にも力を入れ未経験者でも安心してスタートできるようトレーニングやアドバイスを提供します。<br><br>
+                「見た目に自信が無い」・「話すことが不得意」・「自由な時間が少ない」<br><br>
+                そんなあなたが感じる欠点と思える部分こそ個性となり、あなたを輝かせる材料となります。<br>
+                そして配信で得た経験や自信が貴方の人生を豊かにすることを願い私達chipieはひとりひとりに寄り添いあなたと同じ目線でサポートをしてまいります。<br><br>
+                あなたの可能性を広げ、あなたらしく輝ける場所を築くためのお手伝いを私達chipieにさせて頂けませんか？<br>chipie でその一歩を踏み出しましょう。私達が全力でサポートします！<br><br>
+                配信事務所chipie 代表 みみしゃん</p>
         </div>
     </div>
 
-    <div class="service-section service-section-1">
+    <div class="service-section" style="background-image: url('images/01.jpg');">
         <div class="service">
             <div class="service-text">
-                <h2>配信ノウハウ提供</h2><br>
+                <h2>配信ノウハウ提供</h2>
                 <p>– 代表の実績に基づいた成功への近道<br>当社代表はライブ配信で「ランカー」として活動してきました。<br>
-		その代表の培った実績に基づき、配信者向けの実践的なノウハウやアドバイスを提供します。<br>
-		収益化の方法や視聴者獲得術など、実際に成功したテクニックを基にしたアドバイスを行い、配信者が効率よく成長できるようサポートします。<br><br>
-		代表の実績に基づくノウハウで、早期の成果を実現します。
-		</p>
+                その代表の培った実績に基づき、配信者向けの実践的なノウハウやアドバイスを提供します。<br>
+                収益化の方法や視聴者獲得術など、実際に成功したテクニックを基にしたアドバイスを行い、配信者が効率よく成長できるようサポートします。<br><br>
+                代表の実績に基づくノウハウで、早期の成果を実現します。</p>
             </div>
             <div class="service-img">
-                <img src="images/right.jpg" alt="代表者の画像">
+                <img src="images/right.jpg" alt="配信ノウハウ">
             </div>
         </div>
     </div>
 
-    <div class="service-section service-section-2">
+    <div class="service-section" style="background-image: url('images/02.jpg');">
         <div class="service">
             <div class="service-text">
                 <h2>ONECARAT契約店</h2>
                 <p>– 公式パートナーとしての信頼性<br><br>
-		当社はワンカラットの公式代理店として、配信者に特別なサポートを提供しています。<br>
-		ワンカラット契約店ならではの企業案件紹介やコラボ機会を活用でき、信頼性の高い環境で活動できます。<br>
-		公式パートナーとしての信頼とサポートを活かし、安定した収益と成長を支援します。</p>
+                当社はワンカラットの公式代理店として、配信者に特別なサポートを提供しています。<br>
+                ワンカラット契約店ならではの企業案件紹介やコラボ機会を活用でき、信頼性の高い環境で活動できます。<br>
+                公式パートナーとしての信頼とサポートを活かし、安定した収益と成長を支援します。</p>
             </div>
             <div class="service-img">
-                <img src="images/onecarft.jpg" alt="代表者の画像">
+                <img src="images/onecarft.jpg" alt="ONECARAT契約店">
             </div>
         </div>
     </div>
 
-    <div class="service-section service-section-3">
+    <div class="service-section" style="background-image: url('images/03.jpg');">
         <div class="service">
             <div class="service-text">
                 <h2>伴走パートナーとして</h2>
                 <p>– 配信者の成長をサポート<br><br>
-		当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
-		定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成功できるよう支援します。<br>
-		成功するまで寄り添い、活動をサポートし、安定した成長を実現します。</p>
+                当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
+                定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成長できるように支援します。<br>
+                配信者一人一人の強みを伸ばし、成功へ導くためのサポートを行います。</p>
             </div>
             <div class="service-img">
-                <img src="images/38.jpg" alt="代表者の画像">
+                <img src="images/support.jpg" alt="伴走サポート">
             </div>
         </div>
     </div>
+
     <footer>
-        <p>&copy; 2025 chipie. All rights reserved.</p>
+        <p>&copy; 2025 chipie. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
