@@ -10,32 +10,6 @@
             background-color: #000000; /* 背景色を黒に設定 */
             margin: 0;
         }
-	/* ヘッダー部分 */
-	header {
-	    position: relative;
-	    background-image: url("images/onecarft.jpg"); /* ヘッダー部背景 */
-	    background-size: cover;
-	    background-position: center;
-	    background-attachment: fixed;
-	    color: #FFFFFF;
-	}
-        /* 画像部分 */
-        header .header-image {
-            position: absolute;
-            top: 50%; /* 垂直方向に中央配置 */
-            left: 50%;
-            transform: translate(-50%, -50%); /* 水平・垂直両方向に中央配置 */
-            z-index: 1;
-            width: 60%; /* 横幅を画面いっぱいに広げる */
-            height: 60%; /* 高さを画面いっぱいに広げる */
-            object-fit: cover; /* 画像がアスペクト比を維持したまま画面にフィット */
-        }
-        header .header-image img {
-            width: 100%;
-            height: 100%; /* 画像の高さを100%に設定して、親要素にフィットさせる */
-            object-fit: contain;
-        }
-
         /* ナビゲーション */
         .header-content {
             position: absolute;
