@@ -223,6 +223,134 @@
 	    font-size: 28px;
 	  }
 	}
+
+
+
+/* 全体の基本設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;  /* 基本のフォント */
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* ヘッダーやタイトル用 */
+h1, h2, h3 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* 画像のサイズ調整（画面サイズに合わせて調整） */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* フレックスボックスでレイアウト調整 */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  /* アイテムを均等に配置 */
+    margin: 10px;
+}
+
+.item {
+    flex: 1 1 200px;  /* 各アイテムの幅を自動調整 */
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 背景画像のレスポンシブ対応 */
+.hero {
+    background-image: url('path/to/image.jpg');
+    background-size: cover;  /* 画像が画面をカバー */
+    background-position: center;  /* 画像の位置を中央に */
+    height: 100vh;  /* ビューポートの高さに合わせる */
+}
+
+/* フォントサイズの調整（レスポンシブ対応） */
+body {
+    font-size: 16px;  /* 基本のフォントサイズ */
+}
+
+/* 画面幅が600px以下の場合、フォントサイズを小さく */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;  /* 小さいデバイス用のフォントサイズ */
+    }
+
+    .hero {
+        height: 50vh;  /* 小さい画面では高さを調整 */
+    }
+
+    .container {
+        flex-direction: column;  /* アイテムを縦に並べる */
+        align-items: center;  /* 中央揃え */
+    }
+
+    .item {
+        flex: 1 1 100%;  /* アイテムを100%の幅に */
+        margin: 10px 0;  /* アイテムの上下にマージン */
+    }
+
+    h1, h2, h3 {
+        font-size: 18px;  /* 見出しのフォントサイズを調整 */
+    }
+}
+
+/* 画面幅が768px以下の場合、さらに調整 */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px;  /* 画面が中くらいのサイズのデバイス向け */
+    }
+
+    .container {
+        flex-direction: row;  /* アイテムを横並びに */
+        justify-content: center;  /* アイテムを中央揃え */
+    }
+
+    .item {
+        flex: 1 1 45%;  /* アイテムを45%の幅に */
+        margin: 10px;
+    }
+
+    h1, h2, h3 {
+        font-size: 20px;  /* 見出しのフォントサイズを調整 */
+    }
+}
+
+/* 画面幅が1200px以上の場合 */
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px;  /* 大きな画面用にフォントサイズを調整 */
+    }
+
+    .container {
+        justify-content: space-between;  /* アイテムを均等に配置 */
+    }
+
+    .item {
+        flex: 1 1 30%;  /* アイテムを30%の幅に */
+        margin: 15px;
+    }
+
+    h1, h2, h3 {
+        font-size: 24px;  /* 見出しのフォントサイズを調整 */
+    }
+}
+
+	    
+
+	    
+	    
     </style>
 </head>
 <body>
