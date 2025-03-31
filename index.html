@@ -162,6 +162,44 @@
         .service-section-3 {
             background-image: url("images/03.jpg"); /* サービス03下部 */
         }
+	/* スマホ向け */
+	@media (max-width: 600px) {
+	  body {
+	    font-size: 16px;
+	  }
+	  .container {
+	    padding: 10px;
+	  }
+	  .header {
+	    font-size: 20px;
+	  }
+	}
+
+	/* タブレット向け */
+	@media (min-width: 601px) and (max-width: 1024px) {
+	  body {
+	    font-size: 18px;
+	  }
+	  .container {
+	    padding: 20px;
+	  }
+	  .header {
+	    font-size: 24px;
+	  }
+	}
+
+	/* デスクトップ向け */
+	@media (min-width: 1025px) {
+	  body {
+	    font-size: 20px;
+	  }
+	  .container {
+	    padding: 30px;
+	  }
+	  .header {
+	    font-size: 28px;
+	  }
+	}
     </style>
 </head>
 <body>
