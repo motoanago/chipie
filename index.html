@@ -128,13 +128,13 @@
             font-size: 18px;
         }
         .service-img {
-            flex: 1;
+            flex: 0 0 30vw; /* 幅を画面の30%に固定 */
             text-align: left; /* 写真の位置が左に来るように変更 */
         }
         .service-img img {
-            width: auto;
-            height: 600px;
-            object-fit: cover;
+            width: 100%; /* 親要素に合わせて画像を100%に設定 */
+            height: auto; /* 高さは自動調整 */
+            object-fit: cover; /* アスペクト比を維持して表示 */
         }
 
         /* フッター */
