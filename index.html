@@ -133,101 +133,139 @@
 		width: 80%; /* 親要素の幅をウィンドウの90%に設定（右側に10%のスペース） */
 		margin-right: 20%; /* 親要素の右側に10%のスペースを追加 */
 		justify-content: space-between; /* 画像間のスペースを自動的に均等に配置 */
-	}
-	.service-images img {
-		width: 30%; /* 画像の幅を親要素の30%に設定 */
-		height: auto; /* 高さは自動調整 */
-		object-fit: cover; /* 画像が親要素に収まるように調整 */
-	}
-        .service-img {
-            	flex: 0 0 40vw; /* 幅を画面の30%に固定 */
-            	text-align: left; /* 写真の位置が左に来るように変更 */
-        }
-        .service-img img {
-            	width: 100%; /* 親要素に合わせて画像を100%に設定 */
-            	height: auto; /* 高さは自動調整 */
-            	object-fit: cover; /* アスペクト比を維持して表示 */
-        }
+		}
+		.service-images img {
+			width: 30%; /* 画像の幅を親要素の30%に設定 */
+			height: auto; /* 高さは自動調整 */
+			object-fit: cover; /* 画像が親要素に収まるように調整 */
+		}
+        	.service-img {
+            		flex: 0 0 40vw; /* 幅を画面の30%に固定 */
+            		text-align: left; /* 写真の位置が左に来るように変更 */
+        	}
+        	.service-img img {
+            		width: 100%; /* 親要素に合わせて画像を100%に設定 */
+            		height: auto; /* 高さは自動調整 */
+            		object-fit: cover; /* アスペクト比を維持して表示 */
+        	}
 
         /* フッター */
-        footer {
-            	background-color: #000000; /* 背景色を黒に設定 */
-            	color: #F9A7D3;
-            	padding: 20px;
-            	text-align: center;
-            	margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
-        }
+        	footer {
+            		background-color: #000000; /* 背景色を黒に設定 */
+            		color: #F9A7D3;
+            		padding: 20px;
+            		text-align: center;
+            		margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
+        	}
 
         /* スクロール時の背景画像切り替え */
-        .service-section {
-            	background-attachment: fixed;
-        }
+        	.service-section {
+            		background-attachment: fixed;
+        	}
 
-        .service-section-1 {
-            	background-image: url("images/01.jpg"); /* サービス01下部 */
-        }
+        	.service-section-1 {
+            		background-image: url("images/01.jpg"); /* サービス01下部 */
+        	}
 
-        .service-section-2 {
-            	background-image: url("images/02.jpg"); /* サービス02下部 */
-        }
+        	.service-section-2 {
+            		background-image: url("images/02.jpg"); /* サービス02下部 */
+        	}
 
-        .service-section-3 {
-            	background-image: url("images/03.jpg"); /* サービス03下部 */
-        }
+        	.service-section-3 {
+            		background-image: url("images/03.jpg"); /* サービス03下部 */
+        	}
 	    
 	/* スマホ表示向けのスタイル */
-	@media (max-width: 767px) {
-	    	/* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
-	header {
- 		padding: 10px;
+		@media (max-width: 767px) {
+    	/* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
+    			header {
+        		padding: 10px;
+    		}
+
+    		.main-content {
+        		padding: 10px;
+        		font-size: 14px; /* フォントサイズ調整 */
+    		}
+
+    		.service {
+        		padding: 10px;
+    		}
+
+    		.footer {
+        		padding: 10px;
+    		}
+
+    	/* その他、幅が収まるように調整 */
+    		img {
+        		max-width: 100%; /* 画像が親要素に合わせて縮小される */
+        		height: auto;
+        		display: block; /* 画像の下に余白ができるのを防止 */
+        		margin: 0 auto; /* 画像を中央揃え */
+    		}
+
+    	/* 画像と文章のレイアウト調整 */
+    		.content-wrapper {
+        		display: flex;
+        		flex-direction: column; /* スマホ向けに縦並びにする */
+        		align-items: center; /* 中央揃え */
+    		}
+
+    		.text {
+        		margin-top: 15px; /* 画像の下に余白を追加 */
+    		}
 	}
 
- 	.main-content {
- 		padding: 10px;
-  	      	font-size: 14px; /* フォントサイズ調整 */
-  	}
+/* タブレット向け */
+@media (min-width: 601px) and (max-width: 1024px) {
+    body {
+        font-size: 18px;
+    }
 
- 	.service {
- 		padding: 10px;
-	}
+    .container {
+        padding: 20px;
+    }
 
-	.footer {
-		padding: 10px;
-	}
+    .header {
+        font-size: 24px;
+    }
 
-	/* その他、幅が収まるように調整 */
-	img {
-		max-width: 100%; /* 画像が親要素に合わせて縮小される */
-	        height: auto;
-	}
-	}
+    /* タブレット表示時の画像と文章のレイアウト */
+    .content-wrapper {
+        display: flex;
+        flex-direction: column; /* 画像と文章が縦並び */
+        align-items: center; /* 中央揃え */
+    }
 
+    .text {
+        margin-top: 15px;
+    }
+}
 
-	/* タブレット向け */
-	@media (min-width: 601px) and (max-width: 1024px) {
-		body {
-		font-size: 18px;
-	}
-	.container {
-	    	padding: 20px;
-	}
-	.header {
-	    	font-size: 24px;
-	}
-	}
+/* デスクトップ向け */
+@media (min-width: 1025px) {
+    body {
+        font-size: 20px;
+    }
 
-	/* デスクトップ向け */
-	@media (min-width: 1025px) {
-	body {
-	    	font-size: 20px;
-	}
-	.container {
-	    	padding: 30px;
-	}
-	.header {
-	    	font-size: 28px;
-	}
-	}
+    .container {
+        padding: 30px;
+    }
+
+    .header {
+        font-size: 28px;
+    }
+
+    /* デスクトップ表示時に画像と文章が横並び */
+    .content-wrapper {
+        display: flex;
+        flex-direction: row; /* 横並び */
+        justify-content: space-between; /* 画像と文章を左右に配置 */
+    }
+
+    .text {
+        margin-left: 20px; /* 文章と画像の間隔 */
+    }
+}
     </style>
 </head>
 <body>
