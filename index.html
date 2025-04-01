@@ -109,9 +109,9 @@
 
 /* サービスの修正 */
 .service {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* 中央揃え */
+    display: grid; /* FlexboxからGridに変更 */
+    grid-template-columns: 1fr 2fr 1fr 2fr 1fr; /* 1:2:1:2:1 の比率 */
+    gap: 30px;
     background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
     padding: 20px;
     height: 600px;
@@ -123,18 +123,21 @@
     box-sizing: border-box; /* パディングを要素のサイズに含める */
 }
 
+/* テキストの位置 */
 .service-text {
-    grid-column: 2; /* 文字は2番目のカラム */
+    grid-column: 2 / 3; /* 文字は2番目のカラム */
     padding: 20px;
     font-size: 18px;
     background-color: rgba(0, 0, 0, 0.5); /* 背景を半透明黒に */
 }
 
+/* 画像の位置 */
 .service-img {
-    grid-column: 4; /* 画像は4番目のカラム */
+    grid-column: 4 / 5; /* 画像は4番目のカラム */
     max-width: 100%;
     height: auto;
 }
+
         .service-img img {
             width: 100%; /* 親要素に合わせて画像を100%に設定 */
             height: auto; /* 高さは自動調整 */
