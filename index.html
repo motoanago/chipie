@@ -215,6 +215,47 @@
     		}
 	}
 
+/* スマホ表示向けのスタイル */
+@media (max-width: 767px) {
+    /* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
+    header {
+        padding: 10px;
+    }
+
+    .main-content {
+        padding: 10px;
+        font-size: 14px; /* フォントサイズ調整 */
+    }
+
+    .service {
+        padding: 10px;
+    }
+
+    .footer {
+        padding: 10px;
+    }
+
+    /* 画像をレスポンシブ対応 */
+    img {
+        max-width: 100%; /* 画像が親要素に合わせて縮小される */
+        height: auto;
+        display: block; /* 画像の下に余白ができるのを防止 */
+        margin: 0 auto; /* 画像を中央揃え */
+    }
+
+    /* コンテンツのラップ */
+    .content-wrapper {
+        display: flex;
+        flex-direction: column; /* 画像とテキストを縦並びに */
+        align-items: center; /* 中央揃え */
+        text-align: center; /* テキストを中央揃えに */
+    }
+
+    .text {
+        margin-top: 15px; /* 画像の下に余白を追加 */
+    }
+}
+
 /* タブレット向け */
 @media (min-width: 601px) and (max-width: 1024px) {
     body {
@@ -229,15 +270,16 @@
         font-size: 24px;
     }
 
-    /* タブレット表示時の画像と文章のレイアウト */
+    /* タブレット表示時の画像とテキストのレイアウト */
     .content-wrapper {
         display: flex;
-        flex-direction: column; /* 画像と文章が縦並び */
+        flex-direction: column; /* 画像とテキストが縦並び */
         align-items: center; /* 中央揃え */
+        text-align: center; /* テキストを中央揃えに */
     }
 
     .text {
-        margin-top: 15px;
+        margin-top: 15px; /* 画像とテキストの間に余白 */
     }
 }
 
@@ -255,17 +297,18 @@
         font-size: 28px;
     }
 
-    /* デスクトップ表示時に画像と文章が横並び */
+    /* デスクトップ表示時に画像とテキストを横並び */
     .content-wrapper {
         display: flex;
-        flex-direction: row; /* 横並び */
-        justify-content: space-between; /* 画像と文章を左右に配置 */
+        flex-direction: row; /* 画像とテキストを横並び */
+        justify-content: space-between; /* 画像とテキストを左右に配置 */
     }
 
     .text {
-        margin-left: 20px; /* 文章と画像の間隔 */
+        margin-left: 20px; /* 画像とテキストの間隔 */
     }
 }
+
     </style>
 </head>
 <body>
