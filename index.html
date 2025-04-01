@@ -75,8 +75,8 @@
             	font-weight: bold;
             	color: #F9A7D3;
             	text-align: left;
-            	margin-bottom: 20px;
-            	padding-top: 20px; /* タイトルの上に少しスペースを追加 */
+            	margin-bottom: 10px;
+            	padding-top: 10px; /* タイトルの上に少しスペースを追加 */
         }
 
         /* 代表者の写真とテキスト部分の背景色を設定 */
@@ -224,6 +224,8 @@
     }
 
     .main-content {
+	    flex-direction: column; /* 画像と説明文を縦並びに変更 */
+	    text-align: center; /* テキストを中央揃えにする */
         padding: 10px;
         font-size: 14px; /* フォントサイズ調整 */
     }
