@@ -109,18 +109,12 @@
 
         /* サービスの修正 */
         .service {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* 中央揃え */
-            background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
-            padding: 20px;
-            height: 600px;
-            position: relative;
-            z-index: 1;
-            width: 100%; /* 横幅をウインドウ最大に合わせる */
-            margin-left: 0; /* 左側の余白をなくす */
-            margin-bottom: 600px; /* 各サービス間に500pxの間隔を追加 */
-            box-sizing: border-box; /* パディングを要素のサイズに含める */
+    	display: grid;
+    	grid-template-columns: 1fr 2fr 1fr 2fr 1fr; /* 1:2:1:2:1 の比率 */
+    	gap: 20px; /* 余白 */
+    	align-items: center; /* 縦方向の中央揃え */
+    	max-width: 1200px; /* コンテンツ幅を制限 */
+    	margin: 0 auto; /* 中央配置 */
         }
         .service-text {
             flex: 1;
