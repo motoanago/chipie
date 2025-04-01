@@ -220,6 +220,7 @@
     /* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
     header {
         padding: 10px;
+	    font-size: 16px; /* フォントサイズ調整 */
     }
 
     .main-content {
@@ -258,8 +259,13 @@
 
 /* タブレット向け */
 @media (min-width: 601px) and (max-width: 1024px) {
-    body {
+    header {
+        padding: 15px;
+        font-size: 20px; /* フォントサイズ調整 */
+    }
+	body {
         font-size: 18px;
+	    
     }
 
     .container {
