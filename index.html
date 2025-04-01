@@ -127,6 +127,17 @@
             padding: 20px;
             font-size: 18px;
         }
+	.service-images {
+		display: flex;
+		width: 90%; /* 親要素の幅をウィンドウの90%に設定（右側に10%のスペース） */
+		margin-right: 10%; /* 親要素の右側に10%のスペースを追加 */
+		justify-content: space-between; /* 画像間のスペースを自動的に均等に配置 */
+	}
+	.service-images img {
+		width: 30%; /* 画像の幅を親要素の30%に設定 */
+		height: auto; /* 高さは自動調整 */
+		object-fit: cover; /* 画像が親要素に収まるように調整 */
+	}
         .service-img {
             flex: 0 0 30vw; /* 幅を画面の30%に固定 */
             text-align: left; /* 写真の位置が左に来るように変更 */
