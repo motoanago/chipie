@@ -1,132 +1,133 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chipie</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000000; /* 背景色を黒に設定 */
-            margin: 0;
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>chipie</title>
+	<style>
+		body {
+		font-family: Arial, sans-serif;
+		background-color: #000000; /* 背景色を黒に設定 */
+            	margin: 0;
         }
         header .header-image img {
-            width: 100%;
-            height: 100%; /* 画像の高さを100%に設定して、親要素にフィットさせる */
-            object-fit: contain;
+            	width: 100%;
+            	height: 100%; /* 画像の高さを100%に設定して、親要素にフィットさせる */
+            	object-fit: contain;
         }
         /* ナビゲーション */
-        .header-content {
-            position:  fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            z-index: 999;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8);
+	.header-content {
+            	position:  fixed;
+            	top: 0;
+            	left: 0;
+            	right: 0;
+            	padding: 20px;
+            	z-index: 999;
+            	text-align: center;
+            	background: rgba(0, 0, 0, 0.8);
         }
         .header-content .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
+            	font-size: 28px;
+            	font-weight: bold;
+            	margin-bottom: 10px;
         }
         .header-content nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #FF3399;
-            font-size: 24px;
+            	margin-left: 20px;
+            	text-decoration: none;
+            	color: #FF3399;
+            	font-size: 24px;
         }
 
         /* メインコンテンツ */
         .main-content {
-            display: flex;
-            padding: 40px;
-            background-color: #fff0f5; /* ここを白に設定 */
-            margin-top: 200px;
-            margin-left: 200px; /* 右側のスペースを200pxに変更 */
-            margin-right: 200px; /* 右側のスペースを200pxに変更 */
-            margin-bottom: 50px; /* 50ピクセルの間隔に変更 */
+            	display: flex;
+            	padding: 40px;
+            	background-color: #fff0f5; /* ここを白に設定 */
+            	margin-top: 200px;
+            	margin-left: 200px; /* 右側のスペースを200pxに変更 */
+            	margin-right: 200px; /* 右側のスペースを200pxに変更 */
+            	margin-bottom: 50px; /* 50ピクセルの間隔に変更 */
         }
         .main-content .photo {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-left: 30px; /* 左側のスペースを200pxに変更 */
-            margin-bottom: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
-            position: relative;
+            	flex: 1;
+            	border-radius: 10px;
+            	overflow: hidden;
+            	margin-left: 30px; /* 左側のスペースを200pxに変更 */
+            	margin-bottom: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
+            	position: relative;
         }
         .main-content .photo img {
-            width: 100%;
+            	width: 100%;
         }
         .main-content .greeting {
-            flex: 2;
-            font-size: 18px;
-            color: #333;
-            text-align: left; /* 文字列を左揃えに変更 */
-            margin-top: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
-            margin-left: 10%; /* ウィンドウ幅の10%に変更 */
-	　　margin-right: 10%; /* ウィンドウ幅の10%に変更 */
+            	flex: 2;
+            	font-size: 18px;
+            	color: #333;
+            	text-align: left; /* 文字列を左揃えに変更 */
+            	margin-top: 100px; /* 代表の写真と説明文の間に100pxのスペースを追加 */
+            	margin-left: 10%; /* ウィンドウ幅の10%に変更 */
+	　　	margin-right: 10%; /* ウィンドウ幅の10%に変更 */
         }
 
         /* 代表挨拶のタイトル */
         .greeting-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #F9A7D3;
-            text-align: left;
-            margin-bottom: 20px;
-            padding-top: 20px; /* タイトルの上に少しスペースを追加 */
+            	font-size: 24px;
+            	font-weight: bold;
+            	color: #F9A7D3;
+            	text-align: left;
+            	margin-bottom: 20px;
+            	padding-top: 20px; /* タイトルの上に少しスペースを追加 */
         }
 
         /* 代表者の写真とテキスト部分の背景色を設定 */
         .photo-background {
-            position: absolute;
-            top: 50px; /* 上から50px */
-            left: calc(100% - 100px); /* 右から100px空けた位置 */
-            right: 50px; /* 右端から50pxのスペース */
-            bottom: 50px; /* 下から50px */
-            background-color: rgba(255, 255, 0, 0.5); /* 透過した黄色 */
-            z-index: -1; /* 背景として配置 */
-            border-radius: 10px; /* 角を丸める */
+            	position: absolute;
+            	top: 50px; /* 上から50px */
+            	left: calc(100% - 100px); /* 右から100px空けた位置 */
+            	right: 50px; /* 右端から50pxのスペース */
+            	bottom: 50px; /* 下から50px */
+            	background-color: rgba(255, 255, 0, 0.5); /* 透過した黄色 */
+            	z-index: -1; /* 背景として配置 */
+            	border-radius: 10px; /* 角を丸める */
         }
 
         /* サービスセクション */
         .service-section {
-            position: relative;
-            background-image: url("images/01.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #FFFFFF;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            margin-top: 200px; /* 100pxの空白を追加 */
-            padding: 0; /* 左右の余白を削除 */
-            box-sizing: border-box; /* パディングを要素のサイズに含める */
+            	position: relative;
+            	background-image: url("images/01.jpg");
+            	background-size: cover;
+            	background-position: center;
+            	background-attachment: fixed;
+            	color: #FFFFFF;
+            	display: flex;
+            	flex-direction: column;
+            	gap: 30px;
+            	margin-top: 200px; /* 100pxの空白を追加 */
+            	padding: 0; /* 左右の余白を削除 */
+            	box-sizing: border-box; /* パディングを要素のサイズに含める */
         }
 
         /* サービスの修正 */
         .service {
-	    display: flex;
-            align-items: center;
-            justify-content: center; /* 中央揃え */
-            background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
-            padding: 20px;
-            height: 600px;
-            position: relative;
-            z-index: 1;
-            width: 100%; /* 横幅をウインドウ最大に合わせる */
-            margin-left: 0; /* 左側の余白をなくす */
-            margin-bottom: 600px; /* 各サービス間に500pxの間隔を追加 */
-            box-sizing: border-box; /* パディングを要素のサイズに含める */
+	    	display: flex;
+            	align-items: center;
+            	justify-content: center; /* 中央揃え */
+            	background-color: rgba(0, 0, 0, 1); /* 透過黒を背景に */
+            	padding: 20px;
+            	height: 600px;
+            	position: relative;
+            	z-index: 1;
+            	width: 100%; /* 横幅をウインドウ最大に合わせる */
+            	margin-left: 0; /* 左側の余白をなくす */
+            	margin-bottom: 600px; /* 各サービス間に500pxの間隔を追加 */
+            	box-sizing: border-box; /* パディングを要素のサイズに含める */
         }
         .service-text {
-            flex: 1;
-            padding: 20px;
-            font-size: 18px;
+            	flex: 1;
+            	padding: 20px;
+            	font-size: 18px;
         }
+	/* サービスセクションのレイアウト調整*/
 	.service-images {
 		display: flex;
 		width: 90%; /* 親要素の幅をウィンドウの90%に設定（右側に10%のスペース） */
@@ -139,52 +140,52 @@
 		object-fit: cover; /* 画像が親要素に収まるように調整 */
 	}
         .service-img {
-            flex: 0 0 30vw; /* 幅を画面の30%に固定 */
-            text-align: left; /* 写真の位置が左に来るように変更 */
+            	flex: 0 0 30vw; /* 幅を画面の30%に固定 */
+            	text-align: left; /* 写真の位置が左に来るように変更 */
         }
         .service-img img {
-            width: 100%; /* 親要素に合わせて画像を100%に設定 */
-            height: auto; /* 高さは自動調整 */
-            object-fit: cover; /* アスペクト比を維持して表示 */
+            	width: 100%; /* 親要素に合わせて画像を100%に設定 */
+            	height: auto; /* 高さは自動調整 */
+            	object-fit: cover; /* アスペクト比を維持して表示 */
         }
 
         /* フッター */
         footer {
-            background-color: #000000; /* 背景色を黒に設定 */
-            color: #F9A7D3;
-            padding: 20px;
-            text-align: center;
-            margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
+            	background-color: #000000; /* 背景色を黒に設定 */
+            	color: #F9A7D3;
+            	padding: 20px;
+            	text-align: center;
+            	margin-top: 40px; /* フッターとコンテンツの間に少し余白 */
         }
 
         /* スクロール時の背景画像切り替え */
         .service-section {
-            background-attachment: fixed;
+            	background-attachment: fixed;
         }
 
         .service-section-1 {
-            background-image: url("images/01.jpg"); /* サービス01下部 */
+            	background-image: url("images/01.jpg"); /* サービス01下部 */
         }
 
         .service-section-2 {
-            background-image: url("images/02.jpg"); /* サービス02下部 */
+            	background-image: url("images/02.jpg"); /* サービス02下部 */
         }
 
         .service-section-3 {
-            background-image: url("images/03.jpg"); /* サービス03下部 */
+            	background-image: url("images/03.jpg"); /* サービス03下部 */
         }
 	    
 	/* スマホ表示向けのスタイル */
 	@media (max-width: 767px) {
-	    /* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
-	    header {
- 	       padding: 10px;
-	    }
+	    	/* ヘッダーやメインコンテンツが画面幅に収まるように調整 */
+	header {
+ 		padding: 10px;
+	}
 
- 	   .main-content {
- 	       padding: 10px;
-  	      font-size: 14px; /* フォントサイズ調整 */
-  	  }
+ 	.main-content {
+ 		padding: 10px;
+  	      	font-size: 14px; /* フォントサイズ調整 */
+  	}
 
  	   .service {
  	       padding: 10px;
