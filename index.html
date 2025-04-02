@@ -28,7 +28,7 @@
         .hero {
             position: relative;
             width: 100vh;
-            height: 200%;
+            height: 100%;
             background-image: url('images/kira2-1-1.jpg');
             background-size: cover;
             background-position: center;
@@ -81,13 +81,19 @@
             text-align: center;
         }
         @media (max-width: 767px) {
+            body {
+                background-image: url('images/kira2-1-1.jpg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
             .hero {
                 height: auto;
-                background-attachment: fixed;
-                background-position: center;
+                background: none;
+                padding: 50px 0;
             }
-            .hero p {
-                display: none;
+            .hero img {
+                width: 20%;
             }
             .about {
                 display: block;
@@ -106,9 +112,6 @@
             .service-item {
                 width: 100%;
                 margin-bottom: 20px;
-            }
-            .hero img {
-                width: 20%;
             }
         }
         .footer {
@@ -165,3 +168,4 @@
     </div>
 </body>
 </html>
+
