@@ -13,13 +13,32 @@
             color: #fff;
         }
         header {
-            background-color: #111;
-            padding: 15px 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff69b4;
+    background-color: rgba(0, 0, 0, 0.2); /* 黒い背景に透明度20% */
+    position: fixed; /* 画面上部に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff69b4;
+    z-index: 1000; /* 他のコンテンツより前に表示 */
         }
+
+
+
+header .menu a {
+    color: #ff69b4; /* ピンク色 */
+    text-decoration: none; /* 下線をなくす */
+    margin: 0 15px; /* リンク間のスペース */
+    font-size: 18px;
+}
+	    header .menu a:hover {
+    color: #ff0; /* ホバー時に黄色 */
+}
+	    
+	    
         .container {
             width: 80%;
             margin: 0 auto;
@@ -136,7 +155,11 @@
 </head>
 <body>
     <header>
-        chipie - ＯＮＥＣＲＡＦＴ代理店
+    <div>chipie</div>
+    <div class="menu">
+        <a href="#home">HOME</a>
+        <a href="#contracted-livers">契約ライバー</a>
+        <a href="#contact">お問い合わせ</a>
     </header>
     <div class="hero" id="hero">
         <img src="images/koakuma.png" alt="小悪魔画像">
