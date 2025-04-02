@@ -28,7 +28,6 @@
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh;
             background-image: url('images/kira2-1-1.jpg');
             background-size: auto 100vh; /* 縦を画面に合わせ、横幅はそのまま */
             background-position: top center; /* 画像の上部を表示 */
@@ -138,7 +137,7 @@
     <header>
         chipie - 日本最大級のライブ配信代理店
     </header>
-    <div class="hero">
+    <div class="hero" id="hero">
         <img src="images/koakuma.png" alt="小悪魔画像">
     </div>
     <div class="container">
@@ -178,5 +177,18 @@
     <div class="footer">
         <p>&copy; 2024 chipie. All Rights Reserved.</p>
     </div>
+
+    <script>
+        // スマホの縦の高さを取得し、heroの高さをその値に設定
+        function adjustHeroHeight() {
+            const hero = document.getElementById('hero');
+            const screenHeight = window.innerHeight; // 画面の縦の高さを取得
+            hero.style.height = screenHeight + 'px'; // heroの高さを画面の縦の高さに設定
+        }
+
+        // ページロード時とリサイズ時に調整
+        window.addEventListener('load', adjustHeroHeight);
+        window.addEventListener('resize', adjustHeroHeight);
+    </script>
 </body>
 </html>
