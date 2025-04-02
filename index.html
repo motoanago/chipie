@@ -30,9 +30,9 @@
             width: 100%;
             height: 100vh;
             background-image: url('images/kira2-1-1.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-size: auto 100vh; /* 縦を画面に合わせ、横幅はそのまま */
+            background-position: top center; /* 画像の上部を表示 */
+            background-attachment: scroll; /* モバイルでは固定背景を解除 */
             text-align: center;
             color: white;
             display: flex;
@@ -82,19 +82,31 @@
         }
         @media (max-width: 767px) {
             body {
-                background-image: url('images/kira2-1-1.jpg');
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
+                background-color: #000; /* 背景色を黒に設定 */
+                background-image: none; /* 背景画像を解除 */
             }
+
             .hero {
-                height: auto;
-                background: none;
-                padding: 50px 0;
+                background-image: url('images/kira2-1-1.jpg'); /* 背景画像 */
+                background-size: auto 100vh; /* 縦を画面に合わせ、横幅はそのまま */
+                background-position: top center; /* 画像の上部を表示 */
+                background-attachment: scroll; /* モバイルでは固定背景を解除 */
+                height: auto; /* 高さは自動で調整 */
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: 28px;
+                font-weight: bold;
+                text-align: center;
+                background-color: #000; /* メイン部を黒背景に */
             }
+
             .hero img {
-                width: 20%;
+                width: 40%; /* モバイルでは画像を少し小さく */
             }
+
             .about {
                 display: block;
                 text-align: center;
