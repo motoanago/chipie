@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>配信会社 - chipie</title>
+    <title>chipie - 日本最大級のライブ配信代理店</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.1); /* 半透明のオーバーレイ */
+            background: rgba(0, 0, 0, 0.01); /* 半透明のオーバーレイ */
             z-index: 1;
         }
         .hero h1 {
@@ -63,7 +63,7 @@
             padding: 20px;
         }
         .about img {
-            width: 200px;
+            width: auto;
             height: 200px;
             border-radius: 50%;
         }
@@ -114,8 +114,10 @@
                 grid-template-columns: 1fr; /* サービスセクションを縦並びに */
             }
             .about img {
-                width: 150px;
-                height: 150px;
+                width: 100%; /* 画像を縦横比を保ちながら自動的に調整 */
+                max-width: 300px;
+                height: auto;
+                border-radius: 50%;
             }
         }
     </style>
@@ -165,8 +167,7 @@
         </div>
     </div>
     <div class="footer">
-        <p>&copy; 2024 chipie. All Rights Reserved.</p>
+        <p>&copy; 2025 chipie. All Rights Reserved.</p>
     </div>
 </body>
 </html>
-
