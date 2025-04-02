@@ -29,29 +29,28 @@
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh; /* ビューポートの高さ */
-            background-image: url('images/kira2-1-1.jpg'); /* デスクトップ用背景画像 */
+            height: 100vh;
+            background-image: url('images/kira2-1-1.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* 背景画像を固定 */
-            text-align: center;
-            color: white;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            color: white;
             font-size: 28px;
             font-weight: bold;
         }
 
-        /* 画像の中央表示 */
         .hero img {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 11.1vw; /* ウィンドウサイズの9分の1に設定 */
+            width: 11.1vw;
             height: auto;
-            z-index: 1; /* 画像が他のコンテンツの上に表示されるように */
+            z-index: 1;
         }
 
         /* Aboutセクション */
@@ -65,8 +64,6 @@
             padding: 20px;
         }
         .about img {
-            width: auto;
-            height: auto;
             max-width: 200px;
             max-height: 200px;
             border-radius: 50%;
@@ -85,20 +82,33 @@
             border-bottom: 1px solid #ff69b4;
         }
 
+        /* PC版：サービスを横並びに */
+        @media (min-width: 768px) {
+            .services {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+            .service-item {
+                flex: 1;
+                border-bottom: none;
+                padding: 15px;
+                background-color: #222;
+                border-radius: 10px;
+            }
+        }
+
         /* スマホ版 */
         @media (max-width: 767px) {
             .hero {
                 height: auto;
-                background-attachment: fixed; /* スクロールで背景画像が動かないように */
+                background-attachment: fixed;
                 background-position: center;
             }
             .hero p {
-                display: none; /* メイン画像の下に文字が表示されないように */
+                display: none;
             }
-            /* 代表画像 */
             .about img {
-                width: auto;
-                height: auto;
                 max-width: 150px;
                 max-height: 150px;
                 margin: 0 auto;
@@ -109,22 +119,18 @@
                 text-align: center;
                 margin-top: 20px;
             }
-
-            /* サービスセクションを縦に並べる */
             .services {
                 display: block;
             }
             .service-item {
                 width: 100%;
-                margin-bottom: 20px; /* 各セクションに間隔を追加 */
+                margin-bottom: 20px;
                 padding: 20px;
                 border: none;
                 background-color: transparent;
             }
-
-            /* スマホ版の中央画像表示 */
             .hero img {
-                width: 11.1vw; /* ウィンドウサイズの9分の1に設定 */
+                width: 11.1vw;
             }
         }
 
@@ -162,7 +168,6 @@
         </div>
 
         <div class="services">
-            <h2>chipieのサービス</h2>
             <div class="service-item">
                 <h3>ライバー育成・サポート</h3>
                 <p>JAPAN CUSTOMER RESEARCH において、ライバー事務所部門の『知名度』『人気』『サポート体制』で3冠達成！</p>
