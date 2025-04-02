@@ -33,26 +33,16 @@
             background-image: url('images/kira2.jpg'); /* デスクトップ用背景画像 */
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* 背景画像を固定 */
-            color: white;
             text-align: center;
-            padding: 50px 20px;
-            box-sizing: border-box;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.01); /* 半透明のオーバーレイ */
-            z-index: 1;
-        }
-        .hero h1 {
-            z-index: 2;
-            position: relative;
-        }
+
+        /* Aboutセクション */
         .about {
             display: flex;
             align-items: center;
@@ -64,66 +54,69 @@
         }
         .about img {
             width: auto;
-            height: 200px;
+            height: auto;
+            max-width: 200px;
+            max-height: 200px;
             border-radius: 50%;
-            object-fit: contain; /* 画像の縦横比を保つ */
         }
+
+        /* サービスセクション */
         .services {
             margin-top: 50px;
             padding: 20px;
             border-top: 2px solid #ff69b4;
             border-bottom: 2px solid #ff69b4;
-            border-radius: 15px;
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-        .services h2 {
-            grid-column: span 3;
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
         }
         .service-item {
             padding: 15px;
             margin-top: 10px;
             border-bottom: 1px solid #ff69b4;
-            background-color: transparent; /* 背景色を透明に */
-            border-radius: 10px;
         }
+
+        /* スマホ版 */
+        @media (max-width: 767px) {
+            .hero {
+                height: auto;
+                background-attachment: scroll; /* スクロールで背景画像が動かないように */
+                background-position: center;
+            }
+            .hero p {
+                display: none; /* メイン画像の下に文字が表示されないように */
+            }
+            /* 代表画像 */
+            .about img {
+                width: auto;
+                height: auto;
+                max-width: 150px;
+                max-height: 150px;
+                margin: 0 auto;
+                display: block;
+            }
+            .about {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            /* サービスセクションを縦に並べる */
+            .services {
+                display: block;
+            }
+            .service-item {
+                width: 100%;
+                margin-bottom: 20px; /* 各セクションに間隔を追加 */
+                padding: 20px;
+                border: none;
+                background-color: transparent;
+            }
+        }
+
+        /* フッター */
         .footer {
             text-align: center;
             padding: 20px;
             background-color: #111;
             margin-top: 30px;
-        }
-
-        /* レスポンシブデザイン */
-        @media (max-width: 768px) {
-            /* スマホ・タブレット用 */
-            .hero {
-                height: auto;
-                background-attachment: scroll; /* スクロール時に背景が動かない */
-                padding: 30px 20px;
-                background-image: url('images/koakuma.png'); /* スマホ用背景画像 */
-            }
-            .about {
-                flex-direction: column; /* 縦並び */
-                text-align: center;
-            }
-            .services {
-                grid-template-columns: 1fr; /* サービスセクションを1列に */
-            }
-            .service-item {
-                margin-bottom: 20px; /* 各サービス項目の下部に間隔を追加 */
-                display: block; /* 各サービス項目が順番に表示される */
-            }
-            .about img {
-                width: 100%; /* 画像を縦横比を保ちながら自動的に調整 */
-                max-width: 300px;
-                height: auto;
-                border-radius: 50%;
-            }
         }
     </style>
 </head>
@@ -131,14 +124,14 @@
     <header>
         chipie - 日本最大級のライブ配信代理店
     </header>
+
     <div class="hero">
-        <div>
-            <h1>ライブ配信の成功をサポートするプロフェッショナル</h1>
-        </div>
+        <p>ライブ配信の成功をサポートするプロフェッショナル</p>
     </div>
+
     <div class="container">
         <div class="about">
-            <img src="images/mimi.JPG" alt="代表写真"> <!-- 修正した画像パス -->
+            <img src="images/mimi.JPG" alt="代表写真">
             <div>
                 <h2>chipieとは？</h2>
                 <p>chipieは、ライバーと企業の架け橋となる日本最大級のライブ配信代理店です。</p>
@@ -150,6 +143,7 @@
                 <p>■ 登録料・マネジメント料不要</p>
             </div>
         </div>
+
         <div class="services">
             <h2>chipieのサービス</h2>
             <div class="service-item">
@@ -171,6 +165,7 @@
             </div>
         </div>
     </div>
+
     <div class="footer">
         <p>&copy; 2024 chipie. All Rights Reserved.</p>
     </div>
