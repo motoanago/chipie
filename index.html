@@ -46,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* 半透明のオーバーレイ */
+            background: rgba(0, 0, 0, 0.01); /* 半透明のオーバーレイ */
             z-index: 1;
         }
         .hero h1 {
@@ -116,6 +116,7 @@
             }
             .service-item {
                 margin-bottom: 20px; /* 各サービス項目の下部に間隔を追加 */
+                display: block; /* 各サービス項目が順番に表示される */
             }
             .about img {
                 width: 100%; /* 画像を縦横比を保ちながら自動的に調整 */
