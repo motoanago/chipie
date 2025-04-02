@@ -33,6 +33,7 @@
             background-image: url('images/kira2.jpg'); /* デスクトップ用背景画像 */
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* 背景画像を固定 */
             text-align: center;
             color: white;
             display: flex;
@@ -88,7 +89,7 @@
         @media (max-width: 767px) {
             .hero {
                 height: auto;
-                background-attachment: scroll; /* スクロールで背景画像が動かないように */
+                background-attachment: fixed; /* スクロールで背景画像が動かないように */
                 background-position: center;
             }
             .hero p {
@@ -188,3 +189,4 @@
     </div>
 </body>
 </html>
+
