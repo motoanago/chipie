@@ -46,7 +46,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.01); /* 半透明のオーバーレイ */
+            background: rgba(0, 0, 0, 0.5); /* 半透明のオーバーレイ */
             z-index: 1;
         }
         .hero h1 {
@@ -66,6 +66,7 @@
             width: auto;
             height: 200px;
             border-radius: 50%;
+            object-fit: contain; /* 画像の縦横比を保つ */
         }
         .services {
             margin-top: 50px;
@@ -111,7 +112,10 @@
                 text-align: center;
             }
             .services {
-                grid-template-columns: 1fr; /* サービスセクションを縦並びに */
+                grid-template-columns: 1fr; /* サービスセクションを1列に */
+            }
+            .service-item {
+                margin-bottom: 20px; /* 各サービス項目の下部に間隔を追加 */
             }
             .about img {
                 width: 100%; /* 画像を縦横比を保ちながら自動的に調整 */
@@ -167,7 +171,7 @@
         </div>
     </div>
     <div class="footer">
-        <p>&copy; 2025 chipie. All Rights Reserved.</p>
+        <p>&copy; 2024 chipie. All Rights Reserved.</p>
     </div>
 </body>
 </html>
