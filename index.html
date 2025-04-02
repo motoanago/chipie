@@ -42,6 +42,17 @@
             font-weight: bold;
         }
 
+        /* 画像の中央表示 */
+        .hero img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 11.1vw; /* ウィンドウサイズの9分の1に設定 */
+            height: auto;
+            z-index: 1; /* 画像が他のコンテンツの上に表示されるように */
+        }
+
         /* Aboutセクション */
         .about {
             display: flex;
@@ -109,6 +120,11 @@
                 border: none;
                 background-color: transparent;
             }
+
+            /* スマホ版の中央画像表示 */
+            .hero img {
+                width: 11.1vw; /* ウィンドウサイズの9分の1に設定 */
+            }
         }
 
         /* フッター */
@@ -126,6 +142,7 @@
     </header>
 
     <div class="hero">
+        <img src="images/koakuma.png" alt="小悪魔画像">
         <p>ライブ配信の成功をサポートするプロフェッショナル</p>
     </div>
 
