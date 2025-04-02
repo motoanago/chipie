@@ -25,7 +25,6 @@
             margin: 0 auto;
             padding: 20px 0;
         }
-        /* Heroセクション */
         .hero {
             position: relative;
             width: 100%;
@@ -34,26 +33,23 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            text-align: center;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            color: white;
             font-size: 28px;
             font-weight: bold;
         }
-
         .hero img {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 11.1vw;
+            width: 10%;
             height: auto;
             z-index: 1;
         }
-
-        /* Aboutセクション */
         .about {
             display: flex;
             align-items: center;
@@ -64,41 +60,26 @@
             padding: 20px;
         }
         .about img {
-            max-width: 200px;
-            max-height: 200px;
+            width: 20%;
+            height: auto;
             border-radius: 50%;
         }
-
-        /* サービスセクション */
         .services {
             margin-top: 50px;
             padding: 20px;
             border-top: 2px solid #ff69b4;
             border-bottom: 2px solid #ff69b4;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
         }
         .service-item {
+            flex: 1;
             padding: 15px;
-            margin-top: 10px;
-            border-bottom: 1px solid #ff69b4;
+            border: 1px solid #ff69b4;
+            background-color: rgba(255, 105, 180, 0.1);
+            text-align: center;
         }
-
-        /* PC版：サービスを横並びに */
-        @media (min-width: 768px) {
-            .services {
-                display: flex;
-                justify-content: space-between;
-                gap: 20px;
-            }
-            .service-item {
-                flex: 1;
-                border-bottom: none;
-                padding: 15px;
-                background-color: #222;
-                border-radius: 10px;
-            }
-        }
-
-        /* スマホ版 */
         @media (max-width: 767px) {
             .hero {
                 height: auto;
@@ -108,16 +89,16 @@
             .hero p {
                 display: none;
             }
-            .about img {
-                max-width: 150px;
-                max-height: 150px;
-                margin: 0 auto;
-                display: block;
-            }
             .about {
                 display: block;
                 text-align: center;
                 margin-top: 20px;
+            }
+            .about img {
+                width: 40%;
+                height: auto;
+                margin: 0 auto;
+                display: block;
             }
             .services {
                 display: block;
@@ -125,16 +106,11 @@
             .service-item {
                 width: 100%;
                 margin-bottom: 20px;
-                padding: 20px;
-                border: none;
-                background-color: transparent;
             }
             .hero img {
-                width: 11.1vw;
+                width: 20%;
             }
         }
-
-        /* フッター */
         .footer {
             text-align: center;
             padding: 20px;
@@ -147,11 +123,9 @@
     <header>
         chipie - 日本最大級のライブ配信代理店
     </header>
-
     <div class="hero">
         <img src="images/koakuma.png" alt="小悪魔画像">
     </div>
-
     <div class="container">
         <div class="about">
             <img src="images/mimi.JPG" alt="代表写真">
@@ -166,7 +140,6 @@
                 <p>■ 登録料・マネジメント料不要</p>
             </div>
         </div>
-
         <div class="services">
             <div class="service-item">
                 <h3>ライバー育成・サポート</h3>
@@ -187,7 +160,6 @@
             </div>
         </div>
     </div>
-
     <div class="footer">
         <p>&copy; 2024 chipie. All Rights Reserved.</p>
     </div>
