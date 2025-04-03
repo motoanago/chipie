@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>登録者リスト</title>
+    <title>所属ライバーリスト</title>
     <style>
-        /* 既存のスタイル */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -28,131 +27,75 @@
         }
         .container {
             width: 80%;
-            margin: 100px auto;
+            margin: 80px auto 20px;
             padding: 20px 0;
         }
-        .members {
+        .member {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        .member-card {
-            flex: 1 1 30%;
+            align-items: center;
             background-color: rgba(255, 105, 180, 0.1);
             border: 2px solid #ff69b4;
             border-radius: 15px;
-            padding: 15px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
-        .member-photo img {
-            width: 30%;
-            height: auto;
+        .member img {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
+            object-fit: cover;
         }
         .member-info {
             flex: 1;
-            text-align: left;
+            margin-left: 20px;
         }
-        .member-info h3 {
-            font-size: 20px;
-            color: #ff69b4;
-        }
-        .member-info p {
-            font-size: 14px;
-        }
-        .add-button {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .add-button button {
-            padding: 10px 20px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .add-button button:hover {
-            background-color: #ff0;
-        }
-
         @media (max-width: 767px) {
-            .members {
-                display: block;
-            }
-            .member-card {
-                width: 100%;
+            .member {
                 flex-direction: column;
-                padding: 20px;
+                text-align: center;
+                padding: 15px;
             }
-            .member-photo img {
-                width: 50%;
-                margin: 0 auto;
+            .member img {
+                margin-bottom: 10px;
             }
             .member-info {
-                text-align: center;
+                margin-left: 0;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div>配信事務所 chipie - 登録者リスト</div>
+        <div>配信事務所 chipie</div>
+            <nav class="menu">
+        <a href="index.html">代表挨拶</a>
+        <a href="Affiliation">所属ライバー</a>
+        <a href="#">お問い合わせ</a>
+    </nav>
     </header>
-
     <div class="container">
-        <div class="members">
-            <!-- 登録者1 -->
-            <div class="member-card">
-                <div class="member-photo">
-                    <img src="images/01.jpg" alt="登録者1">
-                </div>
-                <div class="member-info">
-                    <h3>登録者1</h3>
-                    <p>紹介文：ここに登録者1の紹介文が入ります。</p>
-                </div>
-            </div>
-
-            <!-- 登録者2 -->
-            <div class="member-card">
-                <div class="member-photo">
-                    <img src="images/02.jpg" alt="登録者2">
-                </div>
-                <div class="member-info">
-                    <h3>登録者2</h3>
-                    <p>紹介文：ここに登録者2の紹介文が入ります。</p>
-                </div>
-            </div>
-
-            <!-- 登録者3 -->
-            <div class="member-card">
-                <div class="member-photo">
-                    <img src="images/03.jpg" alt="登録者3">
-                </div>
-                <div class="member-info">
-                    <h3>登録者3</h3>
-                    <p>紹介文：ここに登録者3の紹介文が入ります。</p>
-                </div>
+        <div class="member">
+            <img src="images/01.jpg" alt="メンバー1">
+            <div class="member-info">
+                <h2>メンバー1</h2>
+                <p>このメンバーの紹介文がここに入ります。</p>
             </div>
         </div>
-
-        <div class="add-button">
-            <button onclick="addMember()">新しい登録者を追加</button>
+        <div class="member">
+            <img src="images/02.jpg" alt="メンバー2">
+            <div class="member-info">
+                <h2>メンバー2</h2>
+                <p>このメンバーの紹介文がここに入ります。</p>
+            </div>
+        </div>
+        <div class="member">
+            <img src="images/03.jpg" alt="メンバー3">
+            <div class="member-info">
+                <h2>メンバー3</h2>
+                <p>このメンバーの紹介文がここに入ります。</p>
+            </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2025 chipie. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        function addMember() {
-            alert("新しい登録者を追加する機能はまだ実装されていません。");
-        }
-    </script>
 </body>
 </html>
+
