@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録者リスト</title>
+    <style>
+        /* 既存のスタイル */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            z-index: 1000;
+        }
+        .container {
+            width: 80%;
+            margin: 100px auto;
+            padding: 20px 0;
+        }
+        .members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .member-card {
+            flex: 1 1 30%;
+            background-color: rgba(255, 105, 180, 0.1);
+            border: 2px solid #ff69b4;
+            border-radius: 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .member-photo img {
+            width: 30%;
+            height: auto;
+            border-radius: 50%;
+        }
+        .member-info {
+            flex: 1;
+            text-align: left;
+        }
+        .member-info h3 {
+            font-size: 20px;
+            color: #ff69b4;
+        }
+        .member-info p {
+            font-size: 14px;
+        }
+        .add-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .add-button button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-button button:hover {
+            background-color: #ff0;
+        }
+
+        @media (max-width: 767px) {
+            .members {
+                display: block;
+            }
+            .member-card {
+                width: 100%;
+                flex-direction: column;
+                padding: 20px;
+            }
+            .member-photo img {
+                width: 50%;
+                margin: 0 auto;
+            }
+            .member-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>配信事務所 chipie - 登録者リスト</div>
+    </header>
+
+    <div class="container">
+        <div class="members">
+            <!-- 登録者1 -->
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="images/01.jpg" alt="登録者1">
+                </div>
+                <div class="member-info">
+                    <h3>登録者1</h3>
+                    <p>紹介文：ここに登録者1の紹介文が入ります。</p>
+                </div>
+            </div>
+
+            <!-- 登録者2 -->
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="images/02.jpg" alt="登録者2">
+                </div>
+                <div class="member-info">
+                    <h3>登録者2</h3>
+                    <p>紹介文：ここに登録者2の紹介文が入ります。</p>
+                </div>
+            </div>
+
+            <!-- 登録者3 -->
+            <div class="member-card">
+                <div class="member-photo">
+                    <img src="images/03.jpg" alt="登録者3">
+                </div>
+                <div class="member-info">
+                    <h3>登録者3</h3>
+                    <p>紹介文：ここに登録者3の紹介文が入ります。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-button">
+            <button onclick="addMember()">新しい登録者を追加</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 chipie. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function addMember() {
+            alert("新しい登録者を追加する機能はまだ実装されていません。");
+        }
+    </script>
+</body>
+</html>
