@@ -27,8 +27,23 @@
             z-index: 1000;
         }
 
+        nav.menu {
+            margin-top: 10px;
+        }
+
+        nav.menu a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav.menu a:hover {
+            text-decoration: underline;
+        }
+
         .content {
-            margin-top: 100px;
+            margin-top: 120px;
             padding: 20px;
         }
 
@@ -64,7 +79,14 @@
     </style>
 </head>
 <body>
-    <header>配信事務所 chipie</header>
+    <header>
+        <div>配信事務所 chipie</div>
+        <nav class="menu">
+            <a href="index.html">HOME</a>
+            <a href="Affiliation.html">所属ライバー</a>
+            <a href="entry.html">お問い合わせ</a>
+        </nav>
+    </header>
 
     <div class="content">
         <img src="images/OC.png" alt="エントリー画像">
