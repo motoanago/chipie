@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エントリーページ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            z-index: 1000;
+        }
+
+        .content {
+            margin-top: 100px;
+            padding: 20px;
+        }
+
+        .content img {
+            width: 300px;
+            max-width: 80%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 10px #ff69b4;
+        }
+
+        .description {
+            margin: 20px auto;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .entry-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background-color: #ff0;
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .entry-link:hover {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <header>配信事務所 chipie</header>
+
+    <div class="content">
+        <img src="images/OC.png" alt="エントリー画像">
+
+        <div class="description">
+            あなたもchipieライバーとして一緒に活動しませんか？<br>
+            経験・未経験は問いません。ご興味がある方は下記よりご連絡ください。
+        </div>
+
+        <a class="entry-link"
+           href="mailto:aaa@bbb.com?subject=問い合わせの件&body=質問内容%0D%0A名前%0D%0Aその他">
+           エントリーはコチラ
+        </a>
+    </div>
+</body>
+</html>
