@@ -3,221 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最新記事</title>
+    <title>chipie - 最新記事</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
             margin: 0;
             padding: 0;
+            background-color: #000;
+            color: #fff;
         }
 
         header {
-            background-color: #000;
-            color: #ff69b4;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
             text-align: center;
-            padding: 20px;
             font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            z-index: 1000;
+        }
+
+        header .menu a {
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+
+        header .menu a:hover {
+            color: #ff0;
         }
 
         .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            position: relative;
+            width: 80%;
+            margin: 100px auto 30px;
+            padding: 20px;
+            text-align: center;
         }
 
-        #post {
-            background-color: #222;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid #ff69b4;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #post img {
-            width: 50%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        #post .text {
+        .note-article {
             width: 100%;
-            padding: 10px;
+            border: 2px solid #ff69b4;
+            padding: 20px;
+            background-color: #000;
+            color: white;
+            margin-bottom: 20px;
+            box-sizing: border-box;
             text-align: left;
         }
 
-        #post h3 {
-            margin: 0;
-        }
-
-        #post p {
-            color: #bbb;
-        }
-
-        #navigation {
-            position: absolute;
-            bottom: 10px;
+        .note-article iframe {
             width: 100%;
+            height: 600px;
+            border: none;
+        }
+
+        .navigation-links {
             display: flex;
             justify-content: space-between;
+            margin-top: 10px;
         }
 
-        #navigation button {
+        .nav-button {
+            color: #ff69b4;
+            text-decoration: none;
+            font-size: 18px;
             padding: 10px 20px;
+            border: 2px solid #ff69b4;
+            background-color: transparent;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-button:hover {
             background-color: #ff69b4;
             color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
         }
 
-        #navigation button:hover {
-            background-color: #e55d92;
-        }
-
-        #navigation button:disabled {
-            background-color: #888;
+        .disabled {
+            color: gray;
             cursor: not-allowed;
+            border-color: gray;
         }
 
-        #navigation #next {
-            position: absolute;
-            right: 0;
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #111;
+            margin-top: 30px;
         }
-
-        #navigation #previous {
-            position: absolute;
-            left: 0;
-        }
-
-        @media (max-width: 768px) {
-            #post {
-                padding: 10px;
-            }
-
-            #post h3 {
-                font-size: 20px;
-            }
-
-            #post p {
-                font-size: 14px;
-            }
-
-            #navigation button {
-                font-size: 14px;
-                padding: 8px 16px;
-            }
-
-            #post img {
-                width: 100%;
-            }
-        }
-
     </style>
 </head>
 <body>
     <header>
-        <h1>最新記事</h1>
+        <div>配信事務所 chipie</div>
+        <nav class="menu">
+            <a href="index.html">HOME</a>
+            <a href="Affiliation.html">所属ライバー</a>
+            <a href="blog.html">活動日記</a>
+            <a href="entry.html">お問い合わせ</a>
+        </nav>
     </header>
 
     <div class="container">
-        <div id="post"></div>
-        <div id="navigation">
-            <button id="previous" disabled>戻る</button>
-            <button id="next">次へ</button>
+        <div class="note-article">
+            <!-- Note記事を埋め込む -->
+            <iframe src="" title="最新記事"></iframe>
+
+            <div class="navigation-links">
+                <a href="#" class="nav-button disabled" id="prev-link">戻る</a>
+                <a href="#" class="nav-button" id="next-link">次へ</a>
+            </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 ブログ</p>
-    </footer>
+    <div class="footer">
+        <p>&copy; 2025 chipie. All Rights Reserved.</p>
+    </div>
 
     <script>
-        const account = "chipie_official"; // noteアカウント名
-        const postsPerPage = 1;  // ページごとに表示する記事数
-        let currentPage = 0;
-        let totalPosts = [];
-
-        // RSSを使ってページ単位でデータを取得
-        async function loadRSS(username, page) {
-            const rssURL = `https://note.com/${username}/rss`;
-            const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
-
-            try {
-                const response = await fetch(proxyURL);
-                const data = await response.json();
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(data.contents, "application/xml");
-                const items = xml.querySelectorAll("item");
-
-                totalPosts = [];
-                for (const item of items) {
-                    const title = item.querySelector("title").textContent;
-                    const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
-                    const description = item.querySelector("description").textContent;
-                    const link = item.querySelector("link").textContent;
-                    totalPosts.push({
-                        title,
-                        pubDate,
-                        description,
-                        link
-                    });
-                }
-
-                currentPage = page;
-                displayPost();
-            } catch (error) {
-                console.error("RSS取得失敗:", error);
-            }
-        }
-
-        function displayPost() {
-            const postContainer = document.getElementById("post");
-            postContainer.innerHTML = '';
-
-            if (currentPage < 0 || currentPage >= totalPosts.length) return;
-
-            const post = totalPosts[currentPage];
-
-            postContainer.innerHTML = `
-                <div class="text">
-                    <h3>${post.title}</h3>
-                    <p><strong>公開日:</strong> ${post.pubDate}</p>
-                    <p>${post.description}</p>
-                </div>
-            `;
-
-            const previousButton = document.getElementById("previous");
-            const nextButton = document.getElementById("next");
-
-            previousButton.disabled = currentPage <= 0;
-            nextButton.disabled = currentPage >= totalPosts.length - 1;
-        }
-
-        document.getElementById("previous").addEventListener("click", () => {
-            if (currentPage > 0) {
-                currentPage--;
-                displayPost();
-            }
-        });
-
-        document.getElementById("next").addEventListener("click", () => {
-            if (currentPage < totalPosts.length - 1) {
-                currentPage++;
-                displayPost();
-            }
-        });
-
-        window.onload = () => {
-            loadRSS(account, currentPage);
+        // ユーザーIDに基づく記事リスト（仮のデータ）
+        const userArticles = {
+            'user123': [
+                'https://note.com/記事のリンク1',
+                'https://note.com/記事のリンク2',
+                'https://note.com/記事のリンク3',
+                // 他の記事リンクを追加
+            ],
+            'user456': [
+                'https://note.com/記事のリンク4',
+                'https://note.com/記事のリンク5',
+                'https://note.com/記事のリンク6',
+                // 他の記事リンクを追加
+            ]
         };
+
+        // 現在のユーザーID（仮の値として'user123'を使用）
+        const currentUserId = 'user123';
+        const articles = userArticles[currentUserId] || [];
+
+        let currentArticleIndex = 0;
+
+        const iframe = document.querySelector('iframe');
+        const prevLink = document.getElementById('prev-link');
+        const nextLink = document.getElementById('next-link');
+
+        // 記事の表示を更新
+        function updateArticle() {
+            if (articles.length > 0) {
+                iframe.src = articles[currentArticleIndex];
+                prevLink.classList.toggle('disabled', currentArticleIndex === 0); // 最初の記事で「戻る」無効化
+                nextLink.classList.toggle('disabled', currentArticleIndex === articles.length - 1); // 最後の記事で「次へ」無効化
+            }
+        }
+
+        // 次の記事へ移動
+        nextLink.addEventListener('click', function(event) {
+            if (currentArticleIndex < articles.length - 1) {
+                currentArticleIndex++;
+                updateArticle();
+            }
+        });
+
+        // 前の記事へ移動
+        prevLink.addEventListener('click', function(event) {
+            if (currentArticleIndex > 0) {
+                currentArticleIndex--;
+                updateArticle();
+            }
+        });
+
+        // 初回の表示更新
+        updateArticle();
     </script>
 </body>
 </html>
