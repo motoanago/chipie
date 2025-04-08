@@ -51,8 +51,9 @@
 
         #post-list {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 10px;
+            justify-content: space-around;
         }
 
         .post {
@@ -61,6 +62,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 2px solid #ff69b4; /* ピンクの枠 */
+            width: 30%;
         }
 
         .post h3 {
@@ -94,65 +96,6 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
-
-        .account-input {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .account-input input {
-            padding: 10px;
-            font-size: 16px;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .account-input button {
-            padding: 10px 20px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .account-input button:hover {
-            background-color: #e55d92;
-        }
-
-        .account-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px;
-        }
-
-        .account-item span {
-            margin-right: 10px;
-        }
-
-        .account-item input {
-            padding: 5px;
-            font-size: 14px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .account-item button {
-            padding: 5px 10px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .account-item button:hover {
-            background-color: #e55d92;
-        }
     </style>
 </head>
 <body>
@@ -161,12 +104,6 @@
     </header>
 
     <div class="container">
-        <!-- アカウントリストの追加フォーム -->
-        <div class="account-input">
-            <input type="text" id="account-name" placeholder="新しいアカウント名">
-            <button onclick="addAccount()">アカウント追加</button>
-        </div>
-
         <div id="account-list">
             <h2>アカウントを選択してください</h2>
         </div>
@@ -183,7 +120,9 @@
     </footer>
 
     <script>
-        let accounts = []; // ユーザーアカウントのリスト
+        // ユーザーリストをコード内に直接配置
+        const accounts = ["chipie_official", "", ""]; // アカウント名の配列
+
         let currentAccount = null;
         let currentPage = 0;
         let totalPosts = [];
@@ -273,50 +212,16 @@
             const accountListDiv = document.getElementById("account-list");
             accountListDiv.innerHTML = '<h2>アカウントを選択してください</h2>';
 
-            accounts.forEach((account, index) => {
-                const accountItem = document.createElement('div');
-                accountItem.className = 'account-item';
-
-                const accountNameSpan = document.createElement('span');
-                accountNameSpan.textContent = account;
-
-                const editInput = document.createElement('input');
-                editInput.type = 'text';
-                editInput.value = account;
-
-                const editButton = document.createElement('button');
-                editButton.textContent = '変更';
-                editButton.onclick = () => {
-                    const newName = editInput.value.trim();
-                    if (newName) {
-                        accounts[index] = newName; // アカウント名を更新
-                        loadAccountList(); // リストを再表示
-                    }
-                };
-
-                accountItem.appendChild(accountNameSpan);
-                accountItem.appendChild(editInput);
-                accountItem.appendChild(editButton);
-                accountListDiv.appendChild(accountItem);
-
-                // アカウントをクリックするとRSSを読み込む
-                accountItem.addEventListener('click', () => {
+            accounts.forEach(account => {
+                const accountItem = document.createElement('button');
+                accountItem.textContent = account;
+                accountItem.onclick = () => {
                     currentAccount = account;
                     loadRSS(account);
-                });
+                };
+
+                accountListDiv.appendChild(accountItem);
             });
-        }
-
-        // アカウントを追加する関数
-        function addAccount() {
-            const accountNameInput = document.getElementById("account-name");
-            const accountName = accountNameInput.value.trim();
-
-            if (accountName && !accounts.includes(accountName)) {
-                accounts.push(accountName);
-                accountNameInput.value = ''; // 入力フィールドをクリア
-                loadAccountList(); // リストを再表示
-            }
         }
 
         // 初期ロード時にアカウントリストを表示
