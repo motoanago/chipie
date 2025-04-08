@@ -41,19 +41,19 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: column; /* 文字を上に画像を下に */
+            flex-direction: row-reverse; /* 画像を右に配置 */
         }
 
         .post img {
-            width: 50vw; /* 画像の幅をウィンドウサイズの50%に設定 */
-            height: auto; /* 高さは自動調整 */
+            width: 50%; /* 画像の幅をウィンドウサイズの半分に設定 */
+            height: auto;
             object-fit: cover;
             border-radius: 8px;
-            margin-top: 15px; /* 画像の上に少しマージンを追加 */
+            margin-left: 15px;
         }
 
         .post .text {
-            width: 100%;
+            width: 50%; /* 文字部分の幅を残りの半分に設定 */
         }
 
         .post h3 {
@@ -79,6 +79,14 @@
         #load-more:hover {
             background-color: #e55d92;
         }
+
+        /* 読み込み中の表示 */
+        #loading {
+            text-align: center;
+            font-size: 18px;
+            color: #ff69b4;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +97,7 @@
     <div class="container">
         <div id="blog-posts">
             <h2>最新の記事</h2>
+            <div id="loading">読み込み中...</div> <!-- 読み込み中のメッセージ -->
             <div id="post-list"></div>
             <button id="load-more" style="display:none;">次の5件</button>
         </div>
@@ -155,9 +164,23 @@
             }
         }
 
+        // 画像の遅延読み込み
+        function loadImageLazy(post, postElement) {
+            if (post.imageUrl) {
+                const img = new Image();
+                img.src = post.imageUrl;
+                img.alt = post.title;
+                img.onload = function() {
+                    postElement.querySelector('.text').appendChild(img);
+                };
+            }
+        }
+
         function displayPosts() {
             const postList = document.getElementById("post-list");
             postList.innerHTML = '';
+            const loadingMessage = document.getElementById("loading");
+            loadingMessage.style.display = 'none'; // 読み込み中メッセージを非表示
 
             const start = currentPage * 5;
             const end = start + 5;
@@ -167,19 +190,17 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
 
-                let imageHTML = '';
-                if (post.imageUrl) {
-                    imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
-                }
-
                 postElement.innerHTML = `
                     <div class="text">
                         <h3>${post.title}</h3>
                         <p><strong>公開日:</strong> ${post.pubDate}</p>
                         <p>${post.description}</p>
                     </div>
-                    ${imageHTML}
                 `;
+
+                // OGP画像の遅延読み込み
+                loadImageLazy(post, postElement);
+
                 postList.appendChild(postElement);
             });
 
@@ -197,6 +218,8 @@
         });
 
         window.onload = () => {
+            const loadingMessage = document.getElementById("loading");
+            loadingMessage.style.display = 'block'; // 読み込み中メッセージを表示
             loadRSS(account);
         };
     </script>
