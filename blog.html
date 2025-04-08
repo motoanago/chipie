@@ -117,7 +117,7 @@
     </footer>
 
     <script>
-        const accounts = ["chipie_official", "#", "#"]; // ユーザーIDをここに追加
+        const accounts = ["chipie_official", "example_user2", "example_user3"]; // ユーザーIDをここに追加
         let currentAccount = null;
         let currentPage = 0;
         let totalPosts = [];
@@ -183,7 +183,7 @@
 
                 postElement.innerHTML = `
                     ${imageHTML}
-                    <h3><a href="${post.link}" target="_blank">${post.title}</a></h3>
+                    <h3>${post.title}</h3>
                     <p><strong>公開日:</strong> ${post.pubDate}</p>
                     <p>${post.description}</p>
                 `;
