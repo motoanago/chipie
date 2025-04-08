@@ -31,33 +31,29 @@
         }
 
         #post-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            justify-content: center;
+            display: block; /* 縦に並べる */
         }
 
         .post {
             background-color: #222;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 2px solid #ff69b4; /* ピンクの枠 */
+            border: 2px solid #ff69b4;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: row;
-            gap: 10px;
-            align-items: center;
         }
 
         .post img {
-            width: 150px;
-            height: 150px;
+            width: 40%;
+            height: auto;
             object-fit: cover;
             border-radius: 8px;
+            margin-right: 15px;
         }
 
         .post .text {
-            width: 70%;
+            width: 60%;
         }
 
         .post h3 {
@@ -87,7 +83,7 @@
 </head>
 <body>
     <header>
-        <h1>note アカウントのブログリスト</h1>
+        <h1>note 最新記事</h1>
     </header>
 
     <div class="container">
@@ -99,19 +95,17 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 note アカウントリスト</p>
+        <p>&copy; 2025 note ブログリスト</p>
     </footer>
 
     <script>
-        // 固定アカウント名
-        const account = "chipie_official"; // アカウント名をここに指定
-
+        const account = "chipie_official"; // ← ここに表示したいnoteアカウント名を入力
         let currentPage = 0;
         let totalPosts = [];
 
-        // RSSフィードを取得する関数
-        async function loadRSS() {
-            const rssURL = `https://note.com/${account}/rss`;
+        // RSSフィードを取得
+        async function loadRSS(username) {
+            const rssURL = `https://note.com/${username}/rss`;
             const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
 
             try {
@@ -126,23 +120,16 @@
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
 
-                    // 画像URLの取得
+                    // 画像取得（description内のimg srcを抜き出す）
                     let imageUrl = "";
-                    const mediaContent = item.querySelector("media\\:content");
-                    if (mediaContent && mediaContent.getAttribute("url")) {
-                        imageUrl = mediaContent.getAttribute("url");
-                    } else {
-                        const enclosure = item.querySelector("enclosure");
-                        if (enclosure && enclosure.getAttribute("url")) {
-                            imageUrl = enclosure.getAttribute("url");
-                        }
+                    const htmlDesc = parser.parseFromString(description, "text/html");
+                    const imgTag = htmlDesc.querySelector("img");
+                    if (imgTag) {
+                        imageUrl = imgTag.getAttribute("src");
                     }
 
                     return { title, pubDate, description, imageUrl };
                 });
-
-                // 新しい順に並べ替え
-                totalPosts.reverse();
 
                 currentPage = 0;
                 displayPosts();
@@ -151,7 +138,7 @@
             }
         }
 
-        // 記事を表示する関数
+        // 記事表示
         function displayPosts() {
             const postList = document.getElementById("post-list");
             postList.innerHTML = '';
@@ -188,14 +175,15 @@
             }
         }
 
-        // 次の5件を表示する処理
         document.getElementById("load-more").addEventListener("click", () => {
             currentPage++;
             displayPosts();
         });
 
-        // ページが読み込まれたら、指定されたアカウントのRSSを表示
-        window.onload = loadRSS;
+        // ページ読み込み時に即RSS取得
+        window.onload = () => {
+            loadRSS(account);
+        };
     </script>
 </body>
 </html>
