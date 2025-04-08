@@ -3,177 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Blog Feed</title>
+    <title>note ブログリスト</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
         }
+
+        header {
+            background-color: #000;
+            color: #ff69b4;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+
         .container {
             width: 80%;
-            margin: 0 auto;
+            margin: 20px auto;
         }
-        .blog-post {
-            background-color: #fff;
-            border: 2px solid pink;
-            margin: 20px 0;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .blog-post img {
-            width: 70%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-        .blog-post h2 {
-            text-align: center;
-            color: #333;
-        }
-        .blog-post p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.5;
-        }
-        .pagination {
-            text-align: center;
+
+        #blog-posts {
             margin-top: 20px;
         }
-        .pagination a {
-            text-decoration: none;
-            padding: 10px;
-            margin: 0 5px;
-            background-color: pink;
-            color: #fff;
-            border-radius: 5px;
+
+        #post-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-around;
         }
-        .pagination a:hover {
-            background-color: #ff1493;
+
+        .post {
+            background-color: #222;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ff69b4; /* ピンクの枠 */
+            width: 30%;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .post img {
+            width: 40%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .post .text {
+            width: 60%;
+        }
+
+        .post h3 {
+            margin: 0;
+        }
+
+        .post p {
+            color: #bbb;
+        }
+
+        #load-more {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #load-more:hover {
+            background-color: #e55d92;
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>note アカウントのブログリスト</h1>
+    </header>
 
-    <div class="container" id="blog-container">
-        <!-- 記事がここに表示されます -->
+    <div class="container">
+        <div id="blog-posts">
+            <h2>最新の記事</h2>
+            <div id="post-list"></div>
+            <button id="load-more" style="display:none;">次の5件</button>
+        </div>
     </div>
 
-    <div class="pagination" id="pagination">
-        <!-- ページ番号がここに表示されます -->
-    </div>
+    <footer>
+        <p>&copy; 2025 note アカウントリスト</p>
+    </footer>
 
     <script>
-        const rssFeedUrl = "https://note.com/chipie_official/rss"; // NoteのRSSフィードURLをここに挿入
+        // 固定アカウント名
+        const account = "chipie_official"; // アカウント名をここに指定
 
-        // RSSフィードをフェッチして解析する関数
-        async function fetchRSSFeed() {
-            const response = await fetch(rssFeedUrl);
-            const data = await response.text();
+        let currentPage = 0;
+        let totalPosts = [];
 
-            // RSSのXMLをパース
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(data, "application/xml");
+        // RSSフィードを取得する関数
+        async function loadRSS() {
+            const rssURL = `https://note.com/${account}/rss`;
+            const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
 
-            // RSSアイテムを取得
-            const items = xmlDoc.getElementsByTagName("item");
+            try {
+                const response = await fetch(proxyURL);
+                const data = await response.json();
+                const parser = new DOMParser();
+                const xml = parser.parseFromString(data.contents, "application/xml");
+                const items = xml.querySelectorAll("item");
 
-            // アイテムの情報を抽出
-            const posts = [];
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const title = item.getElementsByTagName("title")[0].textContent;
-                const link = item.getElementsByTagName("link")[0].textContent;
-                const description = item.getElementsByTagName("description")[0].textContent;
-                const imageUrl = item.getElementsByTagName("media:content")[0]?.getAttribute("url"); // メディア（画像）URL
+                totalPosts = Array.from(items).map(item => {
+                    const title = item.querySelector("title").textContent;
+                    const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
+                    const description = item.querySelector("description").textContent;
 
-                posts.push({
-                    title,
-                    link,
-                    description,
-                    imageUrl
+                    // 画像URLの取得
+                    let imageUrl = "";
+                    const mediaContent = item.querySelector("media\\:content");
+                    if (mediaContent && mediaContent.getAttribute("url")) {
+                        imageUrl = mediaContent.getAttribute("url");
+                    } else {
+                        const enclosure = item.querySelector("enclosure");
+                        if (enclosure && enclosure.getAttribute("url")) {
+                            imageUrl = enclosure.getAttribute("url");
+                        }
+                    }
+
+                    return { title, pubDate, description, imageUrl };
                 });
-            }
 
-            // 表示処理
-            displayPosts(posts);
+                currentPage = 0;
+                displayPosts();
+            } catch (error) {
+                console.error("RSS取得失敗:", error);
+            }
         }
 
-        // 投稿をWebページに表示する関数
-        function displayPosts(posts) {
-            const container = document.getElementById("blog-container");
-            container.innerHTML = "";  // コンテナを初期化
+        // 記事を表示する関数
+        function displayPosts() {
+            const postList = document.getElementById("post-list");
+            postList.innerHTML = '';
 
-            // 最大3つの記事を表示
-            const maxPostsPerPage = 3;
-            const currentPage = 1;
-            const startIndex = (currentPage - 1) * maxPostsPerPage;
-            const endIndex = startIndex + maxPostsPerPage;
+            const start = currentPage * 5;
+            const end = start + 5;
+            const postsToDisplay = totalPosts.slice(start, end);
 
-            const postsToShow = posts.slice(startIndex, endIndex);
+            postsToDisplay.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post';
 
-            postsToShow.forEach(post => {
-                const postElement = document.createElement("div");
-                postElement.classList.add("blog-post");
-
-                // 記事画像
+                let imageHTML = '';
                 if (post.imageUrl) {
-                    const image = document.createElement("img");
-                    image.src = post.imageUrl;
-                    image.alt = post.title;
-                    postElement.appendChild(image);
+                    imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
                 }
 
-                // 記事タイトル
-                const title = document.createElement("h2");
-                const titleLink = document.createElement("a");
-                titleLink.href = post.link;
-                titleLink.target = "_blank";
-                titleLink.textContent = post.title;
-                title.appendChild(titleLink);
-                postElement.appendChild(title);
-
-                // 記事内容（簡単な説明）
-                const description = document.createElement("p");
-                description.textContent = post.description;
-                postElement.appendChild(description);
-
-                container.appendChild(postElement);
+                postElement.innerHTML = `
+                    ${imageHTML}
+                    <div class="text">
+                        <h3>${post.title}</h3>
+                        <p><strong>公開日:</strong> ${post.pubDate}</p>
+                        <p>${post.description}</p>
+                    </div>
+                `;
+                postList.appendChild(postElement);
             });
 
-            // ページ番号リンクを表示
-            displayPagination(posts.length);
-        }
-
-        // ページ番号リンクを作成する関数
-        function displayPagination(totalPosts) {
-            const pagination = document.getElementById("pagination");
-            pagination.innerHTML = "";  // ページ番号を初期化
-
-            const maxPostsPerPage = 3;
-            const totalPages = Math.ceil(totalPosts / maxPostsPerPage);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = document.createElement("a");
-                pageLink.href = "#";
-                pageLink.textContent = i;
-                pageLink.onclick = function() {
-                    changePage(i);
-                };
-                pagination.appendChild(pageLink);
+            const loadMoreButton = document.getElementById("load-more");
+            if (totalPosts.length > (currentPage + 1) * 5) {
+                loadMoreButton.style.display = 'block';
+            } else {
+                loadMoreButton.style.display = 'none';
             }
         }
 
-        // ページを切り替える関数
-        function changePage(pageNumber) {
-            fetchRSSFeed();
-            // ページ内容を再表示する場合、ページ番号を元に動的に変更することもできます。
-        }
+        // 次の5件を表示する処理
+        document.getElementById("load-more").addEventListener("click", () => {
+            currentPage++;
+            displayPosts();
+        });
 
-        // ページ読み込み時にRSSフィードを取得
-        window.onload = fetchRSSFeed;
+        // ページが読み込まれたら、指定されたアカウントのRSSを表示
+        window.onload = loadRSS;
     </script>
-
 </body>
 </html>
