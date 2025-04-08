@@ -32,9 +32,9 @@
 
         #post-list {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 10px;
-            justify-content: space-around;
+            justify-content: center;
         }
 
         .post {
@@ -43,21 +43,21 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border: 2px solid #ff69b4; /* ピンクの枠 */
-            width: 30%;
             display: flex;
             flex-direction: row;
+            gap: 10px;
+            align-items: center;
         }
 
         .post img {
-            width: 40%;
-            height: auto;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
             border-radius: 8px;
-            margin-right: 15px;
         }
 
         .post .text {
-            width: 60%;
+            width: 70%;
         }
 
         .post h3 {
@@ -140,6 +140,9 @@
 
                     return { title, pubDate, description, imageUrl };
                 });
+
+                // 新しい順に並べ替え
+                totalPosts.reverse();
 
                 currentPage = 0;
                 displayPosts();
