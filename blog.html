@@ -7,13 +7,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #000; /* 背景色を黒に変更 */
+            color: #fff; /* 文字色を白に変更 */
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #ff69b4;
+            background-color: #ff69b4; /* ヘッダー背景色をピンクに変更 */
             color: white;
             text-align: center;
             padding: 20px;
@@ -30,11 +31,17 @@
         }
 
         #account-list button {
-            background-color: #ff69b4;
+            background-color: #ff69b4; /* ボタン背景色をピンクに変更 */
             color: white;
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #account-list button:hover {
+            background-color: #e55d92; /* ボタンホバー時にピンクの濃い色 */
         }
 
         #blog-posts {
@@ -48,7 +55,7 @@
         }
 
         .post {
-            background-color: #fff;
+            background-color: #222; /* 記事背景色をダークグレーに変更 */
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -59,17 +66,23 @@
         }
 
         .post p {
-            color: #555;
+            color: #bbb; /* 文字色を少し薄く */
         }
 
         #load-more {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
-            background-color: #ff69b4;
+            background-color: #ff69b4; /* ボタン背景色をピンクに変更 */
             color: white;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #load-more:hover {
+            background-color: #e55d92; /* ボタンホバー時にピンクの濃い色 */
         }
 
         .post img {
@@ -104,7 +117,7 @@
     </footer>
 
     <script>
-        const accounts = ["chipie_official", "example_user2", "example_user3"]; // ユーザーIDをここに追加
+        const accounts = ["example_user1", "example_user2", "example_user3"]; // ユーザーIDをここに追加
         let currentAccount = null;
         let currentPage = 0;
         let totalPosts = [];
@@ -213,4 +226,3 @@
     </script>
 </body>
 </html>
-
