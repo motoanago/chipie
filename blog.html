@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>note ブログリスト</title>
+    <title>note 最新記事</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
         }
 
         #post-list {
-            display: block; /* 縦に並べる */
+            display: block;
         }
 
         .post {
@@ -99,11 +99,10 @@
     </footer>
 
     <script>
-        const account = "chipie_official"; // ← ここに表示したいnoteアカウント名を入力
+        const account = "chipie_official"; // noteアカウント名
         let currentPage = 0;
         let totalPosts = [];
 
-        // RSSフィードを取得
         async function loadRSS(username) {
             const rssURL = `https://note.com/${username}/rss`;
             const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
@@ -120,7 +119,6 @@
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
 
-                    // 画像取得（description内のimg srcを抜き出す）
                     let imageUrl = "";
                     const htmlDesc = parser.parseFromString(description, "text/html");
                     const imgTag = htmlDesc.querySelector("img");
@@ -128,7 +126,11 @@
                         imageUrl = imgTag.getAttribute("src");
                     }
 
-                    return { title, pubDate, description, imageUrl };
+                    // aタグ（続きを見るリンク）を削除
+                    htmlDesc.querySelectorAll('a').forEach(link => link.remove());
+                    const cleanDescription = htmlDesc.body.innerHTML;
+
+                    return { title, pubDate, description: cleanDescription, imageUrl };
                 });
 
                 currentPage = 0;
@@ -138,7 +140,6 @@
             }
         }
 
-        // 記事表示
         function displayPosts() {
             const postList = document.getElementById("post-list");
             postList.innerHTML = '';
@@ -180,7 +181,6 @@
             displayPosts();
         });
 
-        // ページ読み込み時に即RSS取得
         window.onload = () => {
             loadRSS(account);
         };
