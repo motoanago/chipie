@@ -7,17 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* 背景色を黒に変更 */
-            color: #fff; /* 文字色を白に変更 */
+            background-color: #000;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #ff69b4; /* ヘッダー背景色をピンクに変更 */
-            color: white;
+            background-color: #000;
+            color: #ff69b4;
             text-align: center;
             padding: 20px;
+            font-size: 24px;
         }
 
         .container {
@@ -31,7 +32,7 @@
         }
 
         #account-list button {
-            background-color: #ff69b4; /* ボタン背景色をピンクに変更 */
+            background-color: #ff69b4;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -41,7 +42,7 @@
         }
 
         #account-list button:hover {
-            background-color: #e55d92; /* ボタンホバー時にピンクの濃い色 */
+            background-color: #e55d92;
         }
 
         #blog-posts {
@@ -55,10 +56,11 @@
         }
 
         .post {
-            background-color: #222; /* 記事背景色をダークグレーに変更 */
+            background-color: #222;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ff69b4; /* ピンクの枠 */
         }
 
         .post h3 {
@@ -66,14 +68,14 @@
         }
 
         .post p {
-            color: #bbb; /* 文字色を少し薄く */
+            color: #bbb;
         }
 
         #load-more {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
-            background-color: #ff69b4; /* ボタン背景色をピンクに変更 */
+            background-color: #ff69b4;
             color: white;
             border: none;
             cursor: pointer;
@@ -82,7 +84,7 @@
         }
 
         #load-more:hover {
-            background-color: #e55d92; /* ボタンホバー時にピンクの濃い色 */
+            background-color: #e55d92;
         }
 
         .post img {
@@ -92,6 +94,65 @@
             border-radius: 8px;
             margin-bottom: 15px;
         }
+
+        .account-input {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .account-input input {
+            padding: 10px;
+            font-size: 16px;
+            margin-right: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .account-input button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .account-input button:hover {
+            background-color: #e55d92;
+        }
+
+        .account-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .account-item span {
+            margin-right: 10px;
+        }
+
+        .account-item input {
+            padding: 5px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .account-item button {
+            padding: 5px 10px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .account-item button:hover {
+            background-color: #e55d92;
+        }
     </style>
 </head>
 <body>
@@ -100,9 +161,14 @@
     </header>
 
     <div class="container">
+        <!-- アカウントリストの追加フォーム -->
+        <div class="account-input">
+            <input type="text" id="account-name" placeholder="新しいアカウント名">
+            <button onclick="addAccount()">アカウント追加</button>
+        </div>
+
         <div id="account-list">
             <h2>アカウントを選択してください</h2>
-            <!-- アカウントリストが動的に表示されます -->
         </div>
 
         <div id="blog-posts">
@@ -117,7 +183,7 @@
     </footer>
 
     <script>
-        const accounts = ["chipie_official", "example_user2", "example_user3"]; // ユーザーIDをここに追加
+        let accounts = []; // ユーザーアカウントのリスト
         let currentAccount = null;
         let currentPage = 0;
         let totalPosts = [];
@@ -140,7 +206,6 @@
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
 
-                    // 画像URLを取得（<media:content>や<enclosure>タグから）
                     let imageUrl = "";
                     const mediaContent = item.querySelector("media\\:content");
                     if (mediaContent && mediaContent.getAttribute("url")) {
@@ -165,7 +230,7 @@
         // 記事を表示する関数
         function displayPosts() {
             const postList = document.getElementById("post-list");
-            postList.innerHTML = ''; // 初期化
+            postList.innerHTML = '';
 
             const start = currentPage * 5;
             const end = start + 5;
@@ -175,7 +240,6 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
 
-                // 画像があれば表示
                 let imageHTML = '';
                 if (post.imageUrl) {
                     imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
@@ -190,7 +254,6 @@
                 postList.appendChild(postElement);
             });
 
-            // 次の5件ボタンの表示
             const loadMoreButton = document.getElementById("load-more");
             if (totalPosts.length > (currentPage + 1) * 5) {
                 loadMoreButton.style.display = 'block';
@@ -210,18 +273,53 @@
             const accountListDiv = document.getElementById("account-list");
             accountListDiv.innerHTML = '<h2>アカウントを選択してください</h2>';
 
-            accounts.forEach(account => {
-                const accountButton = document.createElement("button");
-                accountButton.textContent = account;
-                accountButton.addEventListener("click", () => {
+            accounts.forEach((account, index) => {
+                const accountItem = document.createElement('div');
+                accountItem.className = 'account-item';
+
+                const accountNameSpan = document.createElement('span');
+                accountNameSpan.textContent = account;
+
+                const editInput = document.createElement('input');
+                editInput.type = 'text';
+                editInput.value = account;
+
+                const editButton = document.createElement('button');
+                editButton.textContent = '変更';
+                editButton.onclick = () => {
+                    const newName = editInput.value.trim();
+                    if (newName) {
+                        accounts[index] = newName; // アカウント名を更新
+                        loadAccountList(); // リストを再表示
+                    }
+                };
+
+                accountItem.appendChild(accountNameSpan);
+                accountItem.appendChild(editInput);
+                accountItem.appendChild(editButton);
+                accountListDiv.appendChild(accountItem);
+
+                // アカウントをクリックするとRSSを読み込む
+                accountItem.addEventListener('click', () => {
                     currentAccount = account;
                     loadRSS(account);
                 });
-                accountListDiv.appendChild(accountButton);
             });
         }
 
-        // ページロード時にアカウントリストを表示
+        // アカウントを追加する関数
+        function addAccount() {
+            const accountNameInput = document.getElementById("account-name");
+            const accountName = accountNameInput.value.trim();
+
+            if (accountName && !accounts.includes(accountName)) {
+                accounts.push(accountName);
+                accountNameInput.value = ''; // 入力フィールドをクリア
+                loadAccountList(); // リストを再表示
+            }
+        }
+
+        // 初期ロード時にアカウントリストを表示
         window.onload = loadAccountList;
     </script>
 </body>
