@@ -89,6 +89,30 @@
             color: #ff69b4;
             display: none;
         }
+
+        /* スマホ対応 */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%; /* スマホ用にコンテナ幅を調整 */
+            }
+
+            .post img {
+                width: 100%; /* 画像をスマホでは100%に拡大 */
+            }
+
+            .post .text {
+                width: 100%; /* スマホ用にテキストの幅も100%に */
+            }
+
+            header {
+                font-size: 20px; /* ヘッダーの文字サイズを調整 */
+            }
+
+            #load-more {
+                font-size: 14px; /* ボタンの文字サイズを調整 */
+                padding: 8px 16px; /* ボタンのパディングを調整 */
+            }
+        }
     </style>
 </head>
 <body>
