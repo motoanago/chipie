@@ -66,30 +66,6 @@
             color: #bbb;
         }
 
-        #load-more {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #ff69b4;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        #load-more:hover {
-            background-color: #e55d92;
-        }
-
-        /* 読み込み中の表示 */
-        #loading {
-            text-align: center;
-            font-size: 18px;
-            color: #ff69b4;
-            display: none;
-        }
-
         /* スマホ対応 */
         @media screen and (max-width: 768px) {
             .container {
@@ -107,11 +83,6 @@
             header {
                 font-size: 20px; /* ヘッダーの文字サイズを調整 */
             }
-
-            #load-more {
-                font-size: 14px; /* ボタンの文字サイズを調整 */
-                padding: 8px 16px; /* ボタンのパディングを調整 */
-            }
         }
     </style>
 </head>
@@ -125,7 +96,6 @@
             <h2>最新の記事</h2>
             <div id="loading">読み込み中...</div> <!-- 読み込み中のメッセージ -->
             <div id="post-list"></div>
-            <button id="load-more" style="display:none;">次の5件</button>
         </div>
     </div>
 
@@ -228,19 +198,7 @@
 
                 postList.appendChild(postElement);
             });
-
-            const loadMoreButton = document.getElementById("load-more");
-            if (totalPosts.length > (currentPage + 1) * 5) {
-                loadMoreButton.style.display = 'block';
-            } else {
-                loadMoreButton.style.display = 'none';
-            }
         }
-
-        document.getElementById("load-more").addEventListener("click", () => {
-            currentPage++;
-            displayPosts();
-        });
 
         window.onload = () => {
             const loadingMessage = document.getElementById("loading");
