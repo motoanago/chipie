@@ -41,7 +41,7 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: row;
+            flex-direction: row-reverse; /* 画像を右に配置 */
         }
 
         .post img {
@@ -49,7 +49,7 @@
             height: auto;
             object-fit: cover;
             border-radius: 8px;
-            margin-right: 15px;
+            margin-left: 15px;
         }
 
         .post .text {
@@ -103,6 +103,21 @@
         let currentPage = 0;
         let totalPosts = [];
 
+        async function fetchOGPImage(url) {
+            try {
+                const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+                const response = await fetch(proxyURL);
+                const data = await response.json();
+                const parser = new DOMParser();
+                const html = parser.parseFromString(data.contents, "text/html");
+                const ogImage = html.querySelector("meta[property='og:image']");
+                return ogImage ? ogImage.getAttribute("content") : "";
+            } catch (error) {
+                console.error("OGP画像の取得失敗:", error);
+                return "";
+            }
+        }
+
         async function loadRSS(username) {
             const rssURL = `https://note.com/${username}/rss`;
             const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
@@ -114,24 +129,24 @@
                 const xml = parser.parseFromString(data.contents, "application/xml");
                 const items = xml.querySelectorAll("item");
 
-                totalPosts = Array.from(items).map(item => {
+                totalPosts = [];
+
+                for (const item of items) {
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
+                    const link = item.querySelector("link").textContent;
 
-                    let imageUrl = "";
-                    const htmlDesc = parser.parseFromString(description, "text/html");
-                    const imgTag = htmlDesc.querySelector("img");
-                    if (imgTag) {
-                        imageUrl = imgTag.getAttribute("src");
-                    }
+                    const imageUrl = await fetchOGPImage(link);
 
-                    // aタグ（続きを見るリンク）を削除
-                    htmlDesc.querySelectorAll('a').forEach(link => link.remove());
-                    const cleanDescription = htmlDesc.body.innerHTML;
-
-                    return { title, pubDate, description: cleanDescription, imageUrl };
-                });
+                    totalPosts.push({
+                        title,
+                        pubDate,
+                        description,
+                        imageUrl,
+                        link
+                    });
+                }
 
                 currentPage = 0;
                 displayPosts();
@@ -163,6 +178,7 @@
                         <h3>${post.title}</h3>
                         <p><strong>公開日:</strong> ${post.pubDate}</p>
                         <p>${post.description}</p>
+                        <p><a href="${post.link}" target="_blank" style="color:#ff69b4;">続きを読む</a></p>
                     </div>
                 `;
                 postList.appendChild(postElement);
