@@ -41,19 +41,19 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: row-reverse; /* 画像を右に配置 */
+            flex-direction: column; /* 文字を上に画像を下に */
         }
 
         .post img {
-            width: 40%;
-            height: auto;
+            width: 50vw; /* 画像の幅をウィンドウサイズの50%に設定 */
+            height: auto; /* 高さは自動調整 */
             object-fit: cover;
             border-radius: 8px;
-            margin-left: 15px;
+            margin-top: 15px; /* 画像の上に少しマージンを追加 */
         }
 
         .post .text {
-            width: 60%;
+            width: 100%;
         }
 
         .post h3 {
@@ -173,12 +173,12 @@
                 }
 
                 postElement.innerHTML = `
-                    ${imageHTML}
                     <div class="text">
                         <h3>${post.title}</h3>
                         <p><strong>公開日:</strong> ${post.pubDate}</p>
                         <p>${post.description}</p>
                     </div>
+                    ${imageHTML}
                 `;
                 postList.appendChild(postElement);
             });
