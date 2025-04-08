@@ -71,6 +71,14 @@
             border: none;
             cursor: pointer;
         }
+
+        .post img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -114,12 +122,24 @@
                 const items = xml.querySelectorAll("item");
 
                 totalPosts = Array.from(items).map(item => {
-                    return {
-                        title: item.querySelector("title").textContent,
-                        link: item.querySelector("link").textContent,
-                        pubDate: new Date(item.querySelector("pubDate").textContent).toLocaleDateString(),
-                        description: item.querySelector("description").textContent
-                    };
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
+                    const description = item.querySelector("description").textContent;
+
+                    // 画像URLを取得（<media:content>や<enclosure>タグから）
+                    let imageUrl = "";
+                    const mediaContent = item.querySelector("media\\:content");
+                    if (mediaContent && mediaContent.getAttribute("url")) {
+                        imageUrl = mediaContent.getAttribute("url");
+                    } else {
+                        const enclosure = item.querySelector("enclosure");
+                        if (enclosure && enclosure.getAttribute("url")) {
+                            imageUrl = enclosure.getAttribute("url");
+                        }
+                    }
+
+                    return { title, link, pubDate, description, imageUrl };
                 });
 
                 currentPage = 0;
@@ -141,7 +161,15 @@
             postsToDisplay.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
+
+                // 画像があれば表示
+                let imageHTML = '';
+                if (post.imageUrl) {
+                    imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
+                }
+
                 postElement.innerHTML = `
+                    ${imageHTML}
                     <h3><a href="${post.link}" target="_blank">${post.title}</a></h3>
                     <p><strong>公開日:</strong> ${post.pubDate}</p>
                     <p>${post.description}</p>
