@@ -127,7 +127,7 @@
 
     <script>
         // ユーザーリストをコード内に直接配置
-        const accounts = ["chipie_official"]; // アカウント名の配列
+        const accounts = ["chipie_official", "account2", "account3"]; // アカウント名の配列
 
         let currentAccount = null;
         let currentPage = 0;
@@ -147,7 +147,6 @@
 
                 totalPosts = Array.from(items).map(item => {
                     const title = item.querySelector("title").textContent;
-                    const link = item.querySelector("link").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
 
@@ -163,7 +162,7 @@
                         }
                     }
 
-                    return { title, link, pubDate, description, imageUrl };
+                    return { title, pubDate, description, imageUrl };
                 });
 
                 currentPage = 0;
