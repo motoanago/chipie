@@ -41,19 +41,21 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: row-reverse; /* 画像を右に配置 */
-        }
-
-        .post img {
-            width: 50%; /* 画像の幅をウィンドウサイズの半分に設定 */
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-left: 15px;
+            flex-direction: column; /* 文字を上に、画像を下に配置 */
+            align-items: center; /* センタリング */
         }
 
         .post .text {
-            width: 50%; /* 文字部分の幅を残りの半分に設定 */
+            text-align: left; /* 文字を左寄せ */
+            width: 80%; /* テキスト部分の幅を設定 */
+        }
+
+        .post img {
+            width: 80%; /* 画像をウィンドウサイズの80%に設定 */
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 15px;
         }
 
         .post h3 {
@@ -144,16 +146,15 @@
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
-                    const link = item.querySelector("link").textContent;
 
+                    const link = item.querySelector("link").textContent;
                     const imageUrl = await fetchOGPImage(link);
 
                     totalPosts.push({
                         title,
                         pubDate,
                         description,
-                        imageUrl,
-                        link
+                        imageUrl
                     });
                 }
 
