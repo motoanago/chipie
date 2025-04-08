@@ -141,25 +141,12 @@
 
     <script>
         const account = "chipie_official"; // noteアカウント名
+        const postsPerPage = 1;  // ページごとに表示する記事数
         let currentPage = 0;
         let totalPosts = [];
 
-        async function fetchOGPImage(url) {
-            try {
-                const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-                const response = await fetch(proxyURL);
-                const data = await response.json();
-                const parser = new DOMParser();
-                const html = parser.parseFromString(data.contents, "text/html");
-                const ogImage = html.querySelector("meta[property='og:image']");
-                return ogImage ? ogImage.getAttribute("content") : "";
-            } catch (error) {
-                console.error("OGP画像の取得失敗:", error);
-                return "";
-            }
-        }
-
-        async function loadRSS(username) {
+        // RSSを使ってページ単位でデータを取得
+        async function loadRSS(username, page) {
             const rssURL = `https://note.com/${username}/rss`;
             const proxyURL = `https://api.allorigins.win/get?url=${encodeURIComponent(rssURL)}`;
 
@@ -171,25 +158,20 @@
                 const items = xml.querySelectorAll("item");
 
                 totalPosts = [];
-
                 for (const item of items) {
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").textContent;
                     const link = item.querySelector("link").textContent;
-
-                    const imageUrl = await fetchOGPImage(link);
-
                     totalPosts.push({
                         title,
                         pubDate,
                         description,
-                        imageUrl,
                         link
                     });
                 }
 
-                currentPage = 0;
+                currentPage = page;
                 displayPost();
             } catch (error) {
                 console.error("RSS取得失敗:", error);
@@ -200,17 +182,11 @@
             const postContainer = document.getElementById("post");
             postContainer.innerHTML = '';
 
-            if (currentPage >= totalPosts.length) return; // ページが終わったら何もしない
+            if (currentPage < 0 || currentPage >= totalPosts.length) return;
 
             const post = totalPosts[currentPage];
 
-            let imageHTML = '';
-            if (post.imageUrl) {
-                imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
-            }
-
             postContainer.innerHTML = `
-                ${imageHTML}
                 <div class="text">
                     <h3>${post.title}</h3>
                     <p><strong>公開日:</strong> ${post.pubDate}</p>
@@ -226,17 +202,21 @@
         }
 
         document.getElementById("previous").addEventListener("click", () => {
-            currentPage--;
-            displayPost();
+            if (currentPage > 0) {
+                currentPage--;
+                displayPost();
+            }
         });
 
         document.getElementById("next").addEventListener("click", () => {
-            currentPage++;
-            displayPost();
+            if (currentPage < totalPosts.length - 1) {
+                currentPage++;
+                displayPost();
+            }
         });
 
         window.onload = () => {
-            loadRSS(account);
+            loadRSS(account, currentPage);
         };
     </script>
 </body>
