@@ -12,6 +12,7 @@
             background-color: #000;
             color: #fff;
             text-align: center;
+            transition: margin-top 0.3s;
         }
 
         header {
@@ -21,10 +22,12 @@
             left: 0;
             width: 100%;
             padding: 15px 20px;
+            text-align: center;
             font-size: 24px;
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
+            transition: top 0.3s;
         }
 
         header .menu a {
@@ -87,10 +90,36 @@
         .entry-link:hover {
             background-color: #ffff00;
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        let lastScrollTop = 0; // 最後のスクロール位置
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // スクロールダウンで隠す、スクロールアップで表示
+            if (currentScroll > lastScrollTop) {
+                // 下にスクロールした場合、ヘッダーを隠す
+                header.style.top = "-80px";  // ヘッダーの高さ分だけ隠す
+            } else {
+                // 上にスクロールした場合、ヘッダーを表示
+                header.style.top = "0";
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 位置を更新
+        });
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div>配信事務所 chipie</div>
         <nav class="menu">
             <a href="index.html">HOME</a>
