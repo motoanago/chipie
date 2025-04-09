@@ -61,16 +61,13 @@ header .menu a {
             	font-weight: bold;
         }
         .hero img {
-            	position: absolute;
-            	top: 50%;
-            	left: 50%;
-            	transform: translate(-50%, -50%);
-            	width: 30%;
-            	height: auto;
-            	z-index: 1;
-
-		opacity: 0;
-		animation: fadeIn 3s ease-in-out forwards;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 25%;
+            height: auto;
+            z-index: 1;
         }
         .about {
             display: flex;
@@ -103,20 +100,7 @@ header .menu a {
             text-align: left;
         }
         @media (max-width: 767px) {
-            	    header {
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    header .menu a {
-        display: block;
-        margin: 10px 0;
-        font-size: 16px;
-    }
-}
-		
-		
-		body {
+            body {
                 background-color: #000; /* 背景色を黒に設定 */
                 background-image: none; /* 背景画像を解除 */
             }
@@ -139,7 +123,7 @@ header .menu a {
             }
 
             .hero img {
-                width: 60%; /* モバイルでは画像を少し小さく */
+                width: 40%; /* モバイルでは画像を少し小さく */
             }
 
             .about {
@@ -168,14 +152,6 @@ header .menu a {
             background-color: #111;
             margin-top: 30px;
         }
-	@keyframes fadeIn {
-    		from {
-        	opacity: 0;
-    	}
-    	to {
-        	opacity: 1;
-    	}
-}
     </style>
 </head>
 <body>
@@ -184,8 +160,9 @@ header .menu a {
     <nav class="menu">
         <a href="index.html">HOME</a>
         <a href="Affiliation.html">所属ライバー</a>
-        <a href="blog.html">活動日記</a>
-        <a href="entry.html">お問い合わせ</a>
+        <a href="mailto:aaa@bbbb.com?subject=お問い合わせ&body=登録について%0D%0A名前%0D%0A質問内容">
+    お問い合わせ
+	</a>
 	</nav>
     </header>
     <div class="hero" id="hero">
