@@ -11,10 +11,9 @@
             padding: 0;
             background-color: #000;
             color: #fff;
-            overflow-x: hidden; /* 横スクロールバーを隠す */
         }
         header {
-            background-color: rgba(0, 0, 0, 0.5); /* ヘッダーの透過 */
+            background-color: rgba(0, 0, 0, 0.5);
             position: fixed;
             top: 0;
             left: 0;
@@ -24,8 +23,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #ff69b4;
-            z-index: 1000; /* 他の要素より前面に表示 */
-            transition: top 0.3s; /* スクロールに伴ってヘッダーが隠れる動き */
+            z-index: 1000;
         }
         header .menu a {
             color: #ff69b4;
@@ -40,7 +38,6 @@
             width: 80%;
             margin: 0 auto;
             padding: 20px 0;
-            margin-top: 80px; /* ヘッダーの高さ分だけ余白を追加 */
         }
         .hero {
             position: relative;
@@ -57,7 +54,6 @@
             align-items: center;
             font-size: 28px;
             font-weight: bold;
-            margin-top: 60px; /* ヘッダーの高さ分だけ余白を追加 */
         }
         .hero img {
             position: absolute;
@@ -220,33 +216,27 @@
                 <p>
                     – 配信者の成長をサポート<br><br>
                     当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
-                    定期的なフィードバックや成長プランを提供し、配信者が目指す未来に向けて着実に進めるよう支援します。<br>
-                    目標達成のために寄り添い、励まし続けます。
+                    定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成功できるよう支援します。<br>
+                    成功するまで寄り添い、活動をサポートし、安定した成長を実現します。
                 </p>
             </div>
         </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; 2025 配信事務所 chipie All Rights Reserved.</p>
-    </footer>
+    <div class="footer">
+        <p>&copy; 2025 chipie. All Rights Reserved.</p>
+    </div>
 
     <script>
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
+        // スマホの縦の高さを取得し、heroの高さをその値に設定
+        function adjustHeroHeight() {
+            const hero = document.getElementById('hero');
+            const screenHeight = window.innerHeight;
+            hero.style.height = screenHeight + 'px';
+        }
 
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > lastScrollTop) {
-                // スクロールダウン → ヘッダーを隠す
-                header.style.top = '-80px'; // ヘッダーの高さ分隠す
-            } else {
-                // スクロールアップ → ヘッダーを表示
-                header.style.top = '0';
-            }
-            lastScrollTop = scrollTop;
-        });
+        window.addEventListener('load', adjustHeroHeight);
+        window.addEventListener('resize', adjustHeroHeight);
     </script>
 </body>
 </html>
