@@ -24,8 +24,15 @@
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
+            display: flex;
+            justify-content: space-between; /* 左右にスペースを配置 */
+            align-items: center; /* 中央に揃える */
         }
-
+        header .menu {
+            display: flex;
+            justify-content: center; /* メニューを中央に配置 */
+            flex-grow: 1; /* メニューが中央に配置されるように */
+        }
         header .menu a {
             color: #ff69b4; /* ピンク色 */
             text-decoration: none; /* 下線をなくす */
