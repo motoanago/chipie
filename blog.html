@@ -14,24 +14,47 @@
         }
 
         header {
-            background-color: #000;
-            color: #ff69b4;
-            text-align: center;
-            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
             font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            z-index: 1000;
         }
+
         header .menu a {
             color: #ff69b4;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
         }
+
         header .menu a:hover {
             color: #ff0;
         }
+
+        nav.menu {
+            margin-top: 10px;
+        }
+
+        nav.menu a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        nav.menu a:hover {
+            text-decoration: underline;
+        }
+
         .container {
             width: 80%;
-            margin: 20px auto;
+            margin: 120px auto 20px auto;
         }
 
         .post {
