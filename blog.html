@@ -41,7 +41,7 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: row-reverse; /* 画像を右に配置 */
+            flex-direction: row-reverse;
         }
 
         .post img {
@@ -79,6 +79,29 @@
         #load-more:hover {
             background-color: #e55d92;
         }
+
+        #loading {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            .post {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .post img {
+                width: 90%;
+                margin: 10px 0 0 0;
+            }
+
+            .post .text {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -89,6 +112,7 @@
     <div class="container">
         <div id="blog-posts">
             <h2>最新の記事</h2>
+            <div id="loading">読み込み中...</div>
             <div id="post-list"></div>
             <button id="load-more" style="display:none;">次の5件</button>
         </div>
@@ -134,30 +158,30 @@
                 for (const item of items) {
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
-                    const description = item.querySelector("description").textContent;
-                    const link = item.querySelector("link").textContent;
+                    const descriptionHTML = item.querySelector("description").textContent;
 
+                    // HTMLタグ除去
+                    const tmp = document.createElement("div");
+                    tmp.innerHTML = descriptionHTML;
+                    const description = tmp.textContent || tmp.innerText || "";
+
+                    const link = item.querySelector("link").textContent;
                     const imageUrl = await fetchOGPImage(link);
 
-                    totalPosts.push({
-                        title,
-                        pubDate,
-                        description,
-                        imageUrl,
-                        link
-                    });
+                    totalPosts.push({ title, pubDate, description, imageUrl, link });
                 }
 
                 currentPage = 0;
                 displayPosts();
+                document.getElementById("loading").style.display = "none";
             } catch (error) {
                 console.error("RSS取得失敗:", error);
+                document.getElementById("loading").textContent = "記事の取得に失敗しました。";
             }
         }
 
         function displayPosts() {
             const postList = document.getElementById("post-list");
-            postList.innerHTML = '';
 
             const start = currentPage * 5;
             const end = start + 5;
@@ -173,12 +197,12 @@
                 }
 
                 postElement.innerHTML = `
-                    ${imageHTML}
                     <div class="text">
                         <h3>${post.title}</h3>
                         <p><strong>公開日:</strong> ${post.pubDate}</p>
                         <p>${post.description}</p>
                     </div>
+                    ${imageHTML}
                 `;
                 postList.appendChild(postElement);
             });
