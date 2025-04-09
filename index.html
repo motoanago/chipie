@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #000;
             color: #fff;
+            transition: margin-top 0.3s; /* スムーズなアニメーション */
         }
         header {
             background-color: rgba(0, 0, 0, 0.5);
@@ -24,6 +25,7 @@
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
+            transition: top 0.3s; /* スムーズなアニメーション */
         }
         header .menu a {
             color: #ff69b4;
@@ -157,7 +159,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div>配信事務所 chipie</div>
         <nav class="menu">
             <a href="index.html">HOME</a>
@@ -228,15 +230,22 @@
     </div>
 
     <script>
-        // スマホの縦の高さを取得し、heroの高さをその値に設定
-        function adjustHeroHeight() {
-            const hero = document.getElementById('hero');
-            const screenHeight = window.innerHeight;
-            hero.style.height = screenHeight + 'px';
-        }
+        let lastScrollTop = 0; // 最後のスクロール位置
+        const header = document.getElementById('header');
 
-        window.addEventListener('load', adjustHeroHeight);
-        window.addEventListener('resize', adjustHeroHeight);
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // スクロールダウンで隠す、スクロールアップで表示
+            if (currentScroll > lastScrollTop) {
+                // 下にスクロールした場合、ヘッダーを隠す
+                header.style.top = "-80px";  // ヘッダーの高さ分だけ隠す
+            } else {
+                // 上にスクロールした場合、ヘッダーを表示
+                header.style.top = "0";
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 位置を更新
+        });
     </script>
 </body>
 </html>
