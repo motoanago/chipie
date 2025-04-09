@@ -1,64 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>chipie</title>
-</head>
-		<style>
-        		body {
-            		font-family: Arial, sans-serif;
-            		margin: 0;
-            		padding: 0;
-            		background-color: #000;
-            		color: #fff;
-        	}
-        	header {
-    			background-color: rgba(0, 0, 0, 0.5); 
-    			position: fixed;
-    			top: 0;
-    			left: 0;
-    			width: 100%;
-    			padding: 15px 20px;
-    			text-align: center;
-    			font-size: 24px;
-    			font-weight: bold;
-    			color: #ff69b4;
-    			z-index: 1000;
-		}
-			header .menu a {
-    			color: #ff69b4; /* ピンク色 */
-    			text-decoration: none; /* 下線をなくす */
-    			margin: 0 15px; /* リンク間のスペース */
-    			font-size: 18px;
-		}
-	    		header .menu a:hover {
-    			color: #ff0; /* ホバー時に黄色 */
-		}
-	    
-	    
-        	.container {
-            		width: 80%;
-            		margin: 0 auto;
-            		padding: 20px 0;
-        	}
-        	.hero {
-            		position: relative;
-            		width: 100%;
-            		background-image: url('images/kira2-1-1.jpg');
-            		background-size: cover;
-            		background-position: center center;
-            		background-attachment: fixed;
-			height: 100vh;
-            		text-align: center;
-            		color: white;
-            		display: flex;
-            		justify-content: center;
-            		align-items: center;
-            		font-size: 28px;
-            		font-weight: bold;
-        	}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chipie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
+            z-index: 1000;
+        }
+        header .menu a {
+            color: #ff69b4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        header .menu a:hover {
+            color: #ff0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        .hero {
+            position: relative;
+            width: 100%;
+            background-image: url('images/kira2-1-1.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            height: 100vh;
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
         .hero img {
             position: absolute;
             top: 50%;
@@ -67,8 +63,8 @@
             width: 25%;
             height: auto;
             z-index: 1;
-	opacity: 0;
-		animation: fadeIn 3s ease-in-out forwards;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
         }
         .about {
             display: flex;
@@ -102,16 +98,15 @@
         }
         @media (max-width: 767px) {
             body {
-                background-color: #000; /* 背景色を黒に設定 */
-                background-image: none; /* 背景画像を解除 */
+                background-color: #000;
+                background-image: none;
             }
-
             .hero {
-                background-image: url('images/kira2-1-1.jpg'); /* 背景画像 */
-                background-size: auto 100vh; /* 縦を画面に合わせ、横幅はそのまま */
-                background-position: top center; /* 画像の上部を表示 */
-                background-attachment: scroll; /* モバイルでは固定背景を解除 */
-                height: auto; /* 高さは自動で調整 */
+                background-image: url('images/kira2-1-1.jpg');
+                background-size: auto 100vh;
+                background-position: top center;
+                background-attachment: scroll;
+                height: auto;
                 padding: 0;
                 display: flex;
                 justify-content: center;
@@ -120,13 +115,11 @@
                 font-size: 28px;
                 font-weight: bold;
                 text-align: center;
-                background-color: #000; /* メイン部を黒背景に */
+                background-color: #000;
             }
-
             .hero img {
-                width: 40%; /* モバイルでは画像を少し小さく */
+                width: 40%;
             }
-
             .about {
                 display: block;
                 text-align: center;
@@ -144,7 +137,7 @@
             .service-item {
                 width: 90%;
                 margin: 0 auto 20px;
-		    text-align: left;
+                text-align: left;
             }
         }
         .footer {
@@ -153,71 +146,83 @@
             background-color: #111;
             margin-top: 30px;
         }
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
     </style>
-
+</head>
 <body>
     <header>
-    <div>配信事務所 chipie</div>
-    <nav class="menu">
-        <a href="index.html">HOME</a>
-        <a href="Affiliation.html">所属ライバー</a>
-	    	<a href="blog.html">活動日記</a>
-        	<a href="entry.html">お問い合わせ</a>
-	</nav>
+        <div>配信事務所 chipie</div>
+        <nav class="menu">
+            <a href="index.html">HOME</a>
+            <a href="Affiliation.html">所属ライバー</a>
+            <a href="blog.html">活動日記</a>
+            <a href="entry.html">お問い合わせ</a>
+        </nav>
     </header>
+
     <div class="hero" id="hero">
         <img src="images/koakuma.png" alt="小悪魔画像">
     </div>
+
     <div class="container">
         <div class="about">
             <img src="images/mimi.JPG" alt="代表写真">
             <div>
                 <h2>代表挨拶</h2>
-                <p>私たちchipieは配信者が自分らしく活動し、配信者とファンをつなぐためのサポートを行う配信事務所です。<br>
-		        また、新人配信者の発掘。育成にも力を入れ未経験者でも安心してスタートできるようトレーニングやアドバイスを提供します。<br><br>
-		        「見た目に自信が無い」<br>「話すことが不得意」<br>「自由な時間が少ない」<br><br>
-		        そんなあなたが感じる欠点と思える部分こそ個性となり、あなたを輝かせる材料となります。<br>
-		        そして配信で得た経験や自信が貴方の人生を豊かにすることを願い私達chipieはひとりひとりに寄り添いあなたと同じ目線でサポートをしてまいります。<br><br>
-		        あなたの可能性を広げ、あなたらしく輝ける場所を築くためのお手伝いを私達chipieにさせて頂けませんか？<br>chipie でその一歩を踏み出しましょう。
-		        私達が全力でサポートします！<br><br>
-		        配信事務所chipie 代表 みみしゃん</p>
-
+                <p>
+                    私たちchipieは配信者が自分らしく活動し、配信者とファンをつなぐためのサポートを行う配信事務所です。<br>
+                    また、新人配信者の発掘。育成にも力を入れ未経験者でも安心してスタートできるようトレーニングやアドバイスを提供します。<br><br>
+                    「見た目に自信が無い」<br>
+                    「話すことが不得意」<br>
+                    「自由な時間が少ない」<br><br>
+                    そんなあなたが感じる欠点と思える部分こそ個性となり、あなたを輝かせる材料となります。<br>
+                    そして配信で得た経験や自信が貴方の人生を豊かにすることを願い私達chipieはひとりひとりに寄り添いあなたと同じ目線でサポートをしてまいります。<br><br>
+                    あなたの可能性を広げ、あなたらしく輝ける場所を築くためのお手伝いを私達chipieにさせて頂けませんか？<br>
+                    chipie でその一歩を踏み出しましょう。私達が全力でサポートします！<br><br>
+                    配信事務所chipie 代表 みみしゃん
+                </p>
             </div>
         </div>
+
         <div class="services">
             <div class="service-item">
                 <h3>ライバー育成・サポート</h3>
-                <p>– 代表の実績に基づいた成功への近道<br>当社代表はライブ配信で「ランカー」として活動してきました。<br>
-		        その代表の培った実績に基づき、配信者向けの実践的なノウハウやアドバイスを提供します。<br>
-		        収益化の方法や視聴者獲得術など、実際に成功したテクニックを基にしたアドバイスを行い、配信者が効率よく成長できるようサポートします。<br><br>
-		        代表の実績に基づくノウハウで、早期の成果を実現します。
-		        </p>
-
+                <p>
+                    – 代表の実績に基づいた成功への近道<br>
+                    当社代表はライブ配信で「ランカー」として活動してきました。<br>
+                    その代表の培った実績に基づき、配信者向けの実践的なノウハウやアドバイスを提供します。<br>
+                    収益化の方法や視聴者獲得術など、実際に成功したテクニックを基にしたアドバイスを行い、配信者が効率よく成長できるようサポートします。<br><br>
+                    代表の実績に基づくノウハウで、早期の成果を実現します。
+                </p>
             </div>
             <div class="service-item">
                 <h3>ＯＮＥＣＲＡＦＴ契約店</h3>
-                <p>– 公式パートナーとしての信頼性<br><br>
-		        当社はワンカラットの公式代理店として、配信者に特別なサポートを提供しています。<br>
-		        ワンカラット契約店ならではの企業案件紹介やコラボ機会を活用でき、信頼性の高い環境で活動できます。<br>
-		        公式パートナーとしての信頼とサポートを活かし、安定した収益と成長を支援します。</p>
+                <p>
+                    – 公式パートナーとしての信頼性<br><br>
+                    当社はワンカラットの公式代理店として、配信者に特別なサポートを提供しています。<br>
+                    ワンカラット契約店ならではの企業案件紹介やコラボ機会を活用でき、信頼性の高い環境で活動できます。<br>
+                    公式パートナーとしての信頼とサポートを活かし、安定した収益と成長を支援します。
+                </p>
             </div>
             <div class="service-item">
                 <h3>伴走パートナーとして</h3>
-                <p>– 配信者の成長をサポート<br><br>
-		        当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
-		        定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成功できるよう支援します。<br>
-		        成功するまで寄り添い、活動をサポートし、安定した成長を実現します。</p>
+                <p>
+                    – 配信者の成長をサポート<br><br>
+                    当社は配信者の目標に合わせた伴走パートナーとしてサポートします。<br>
+                    定期的なフィードバックや成長プランを提供し、配信者が自分のペースで成功できるよう支援します。<br>
+                    成功するまで寄り添い、活動をサポートし、安定した成長を実現します。
+                </p>
             </div>
         </div>
     </div>
+
     <div class="footer">
         <p>&copy; 2025 chipie. All Rights Reserved.</p>
     </div>
@@ -226,14 +231,12 @@
         // スマホの縦の高さを取得し、heroの高さをその値に設定
         function adjustHeroHeight() {
             const hero = document.getElementById('hero');
-            const screenHeight = window.innerHeight; // 画面の縦の高さを取得
-            hero.style.height = screenHeight + 'px'; // heroの高さを画面の縦の高さに設定
+            const screenHeight = window.innerHeight;
+            hero.style.height = screenHeight + 'px';
         }
 
-        // ページロード時とリサイズ時に調整
         window.addEventListener('load', adjustHeroHeight);
         window.addEventListener('resize', adjustHeroHeight);
     </script>
 </body>
 </html>
-
