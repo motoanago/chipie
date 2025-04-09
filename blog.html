@@ -158,7 +158,7 @@
                 for (const item of items) {
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
-                    const descriptionHTML = item.querySelector("description").textContent;
+                    const description = item.querySelector("description").innerHTML;
 
                     // HTMLタグ除去
                     const tmp = document.createElement("div");
