@@ -41,7 +41,8 @@
             border: 2px solid #ff69b4;
             margin-bottom: 20px;
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: row-reverse; /* PCで画像右 */
+            gap: 15px;
         }
 
         .post img {
@@ -49,7 +50,6 @@
             height: auto;
             object-fit: cover;
             border-radius: 8px;
-            margin-left: 15px;
         }
 
         .post .text {
@@ -80,22 +80,15 @@
             background-color: #e55d92;
         }
 
-        #loading {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-            color: #aaa;
-        }
-
-        @media (max-width: 768px) {
+        @media screen and (max-width: 768px) {
             .post {
-                flex-direction: column-reverse;
-                align-items: center;
+                flex-direction: column; /* スマホで画像下 */
             }
 
             .post img {
                 width: 90%;
-                margin: 10px 0 0 0;
+                height: auto;
+                margin: 0 auto;
             }
 
             .post .text {
@@ -112,7 +105,6 @@
     <div class="container">
         <div id="blog-posts">
             <h2>最新の記事</h2>
-            <div id="loading">読み込み中...</div>
             <div id="post-list"></div>
             <button id="load-more" style="display:none;">次の5件</button>
         </div>
@@ -123,7 +115,7 @@
     </footer>
 
     <script>
-        const account = "chipie_official"; // noteアカウント名
+        const account = "chipie_official";
         let currentPage = 0;
         let totalPosts = [];
 
@@ -159,29 +151,46 @@
                     const title = item.querySelector("title").textContent;
                     const pubDate = new Date(item.querySelector("pubDate").textContent).toLocaleDateString();
                     const description = item.querySelector("description").innerHTML;
-
-                    // HTMLタグ除去
-                    const tmp = document.createElement("div");
-                    tmp.innerHTML = descriptionHTML;
-                    const description = tmp.textContent || tmp.innerText || "";
-
                     const link = item.querySelector("link").textContent;
-                    const imageUrl = await fetchOGPImage(link);
 
-                    totalPosts.push({ title, pubDate, description, imageUrl, link });
+                    totalPosts.push({
+                        title,
+                        pubDate,
+                        description,
+                        imageUrl: "", // 後で追加
+                        link
+                    });
                 }
 
                 currentPage = 0;
                 displayPosts();
-                document.getElementById("loading").style.display = "none";
+
+                // 非同期で画像を取得して差し込む
+                totalPosts.forEach(async (post, index) => {
+                    const imageUrl = await fetchOGPImage(post.link);
+                    post.imageUrl = imageUrl;
+
+                    // 現在表示されている記事にだけ画像を挿入
+                    const postList = document.getElementById("post-list");
+                    const postElement = postList.children[index % 5];
+                    if (postElement && imageUrl) {
+                        const img = document.createElement("img");
+                        img.src = imageUrl;
+                        img.alt = post.title;
+
+                        // スマホでは画像を下に、PCでは右側に挿入されるようにCSSで制御
+                        postElement.insertBefore(img, postElement.firstChild);
+                    }
+                });
+
             } catch (error) {
                 console.error("RSS取得失敗:", error);
-                document.getElementById("loading").textContent = "記事の取得に失敗しました。";
             }
         }
 
         function displayPosts() {
             const postList = document.getElementById("post-list");
+            postList.innerHTML = '';
 
             const start = currentPage * 5;
             const end = start + 5;
@@ -191,19 +200,14 @@
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
 
-                let imageHTML = '';
-                if (post.imageUrl) {
-                    imageHTML = `<img src="${post.imageUrl}" alt="${post.title}">`;
-                }
-
                 postElement.innerHTML = `
                     <div class="text">
                         <h3>${post.title}</h3>
                         <p><strong>公開日:</strong> ${post.pubDate}</p>
                         <p>${post.description}</p>
                     </div>
-                    ${imageHTML}
                 `;
+
                 postList.appendChild(postElement);
             });
 
