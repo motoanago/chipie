@@ -19,23 +19,19 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 0; /* ヘッダーのパディングを0に設定 */
+            padding: 15px 20px;
             text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff69b4;
             z-index: 1000; /* 他の要素より前面に表示 */
             transition: top 0.3s; /* スクロールに伴ってヘッダーが隠れる動き */
-        }
-        header .menu {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 0; /* ヘッダーのリンクの高さに合わせたパディング */
         }
         header .menu a {
             color: #ff69b4;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
-            line-height: 40px; /* リンクの高さを指定 */
         }
         header .menu a:hover {
             color: #ff0;
