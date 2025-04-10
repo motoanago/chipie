@@ -96,23 +96,6 @@
                 opacity: 1;
             }
         }
-
-        let lastScrollTop = 0; // 最後のスクロール位置
-        const header = document.getElementById('header');
-
-        window.addEventListener('scroll', function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-            // スクロールダウンで隠す、スクロールアップで表示
-            if (currentScroll > lastScrollTop) {
-                // 下にスクロールした場合、ヘッダーを隠す
-                header.style.top = "-80px";  // ヘッダーの高さ分だけ隠す
-            } else {
-                // 上にスクロールした場合、ヘッダーを表示
-                header.style.top = "0";
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 位置を更新
-        });
     </style>
 </head>
 <body>
@@ -139,5 +122,24 @@
            エントリーはコチラ
         </a>
     </div>
+
+    <script>
+        let lastScrollTop = 0; // 最後のスクロール位置
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // スクロールダウンで隠す、スクロールアップで表示
+            if (currentScroll > lastScrollTop) {
+                // 下にスクロールした場合、ヘッダーを隠す
+                header.style.top = "-80px";  // ヘッダーの高さ分だけ隠す
+            } else {
+                // 上にスクロールした場合、ヘッダーを表示
+                header.style.top = "0";
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 位置を更新
+        });
+    </script>
 </body>
 </html>
