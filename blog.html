@@ -25,6 +25,7 @@
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
+            transition: top 0.3s; /* ヘッダーの表示/非表示を滑らかに */
         }
         header .menu a {
             color: #ff69b4;
@@ -276,6 +277,23 @@
 
         window.onload = () => {
             loadRSS(account);
+        };
+
+        let lastScrollTop = 0; // 最後にスクロールした位置
+
+        window.onscroll = function() {
+            const header = document.querySelector("header");
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop; // 現在のスクロール位置
+
+            if (currentScroll > lastScrollTop) {
+                // 下にスクロールした場合（ヘッダーを隠す）
+                header.style.top = "-100px"; // ヘッダーを画面外に隠す
+            } else {
+                // 上にスクロールした場合（ヘッダーを表示）
+                header.style.top = "0"; // ヘッダーを表示
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 最後のスクロール位置を更新
         };
     </script>
 </body>
