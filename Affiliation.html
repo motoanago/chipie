@@ -24,6 +24,7 @@
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
+            transition: top 0.3s; /* スクロール時のスムーズな動きを設定 */
         }
         header .menu a {
             color: #ff69b4;
@@ -74,7 +75,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div>配信事務所 chipie</div>
         <nav class="menu">
             <a href="index.html">HOME</a>
@@ -107,5 +108,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // ヘッダーが隠れるタイミングを制御するJavaScript
+        let lastScrollTop = 0;
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', function() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // スクロールダウン時にヘッダーを隠す
+                header.style.top = "-80px"; // ヘッダーの高さ（または適切な値）分だけ隠す
+            } else {
+                // スクロールアップ時にヘッダーを表示
+                header.style.top = "0";
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // 上にスクロールするとき、負の値を避ける
+        });
+    </script>
 </body>
 </html>
