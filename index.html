@@ -24,7 +24,6 @@
             font-weight: bold;
             color: #ff69b4;
             z-index: 1000;
-            transition: top 0.3s; /* スムーズな表示・非表示のアニメーション */
         }
         header .menu a {
             color: #ff69b4;
@@ -158,7 +157,7 @@
     </style>
 </head>
 <body>
-    <header id="header">
+    <header>
         <div>配信事務所 chipie</div>
         <nav class="menu">
             <a href="index.html">HOME</a>
@@ -229,22 +228,15 @@
     </div>
 
     <script>
-        let lastScrollTop = 0;
-        const header = document.getElementById('header');
+        // スマホの縦の高さを取得し、heroの高さをその値に設定
+        function adjustHeroHeight() {
+            const hero = document.getElementById('hero');
+            const screenHeight = window.innerHeight;
+            hero.style.height = screenHeight + 'px';
+        }
 
-        window.addEventListener('scroll', function() {
-            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop) {
-                // 下にスクロールしているときはヘッダーを隠す
-                header.style.top = "-80px"; // ヘッダーを隠す
-            } else {
-                // 上にスクロールしているときはヘッダーを表示
-                header.style.top = "0";
-            }
-
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // スクロール位置が0未満にならないように
-        });
+        window.addEventListener('load', adjustHeroHeight);
+        window.addEventListener('resize', adjustHeroHeight);
     </script>
 </body>
 </html>
