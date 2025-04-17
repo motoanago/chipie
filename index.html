@@ -228,7 +228,7 @@
     </div>
 
     <script>
-        // スマホの縦の高さを取得し、heroの高さをその値に設定
+        // hero の高さをスマホ画面の高さに調整
         function adjustHeroHeight() {
             const hero = document.getElementById('hero');
             const screenHeight = window.innerHeight;
@@ -237,6 +237,24 @@
 
         window.addEventListener('load', adjustHeroHeight);
         window.addEventListener('resize', adjustHeroHeight);
+
+        // ヘッダーの表示/非表示制御（スクロール方向に応じて）
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function () {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (currentScroll > lastScrollTop) {
+                // 下スクロール → ヘッダーを隠す
+                header.style.top = '-100px';
+            } else {
+                // 上スクロール → ヘッダーを表示
+                header.style.top = '0';
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
     </script>
 </body>
 </html>
